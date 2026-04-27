@@ -297,12 +297,23 @@
   /* ── ABOUT ── */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .about-photo {
-    aspect-ratio: 4/5; border-radius: 2rem 6rem 2rem 2rem;
-    background: var(--parchment); border: 2px solid var(--border);
-    display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 1rem;
-    font-size: 4rem;
-  }
+    width: 100%;
+    border-radius: 2rem 6rem 2rem 2rem;
+    overflow: hidden;
+    background: none;
+    border: none;
+    padding: 0;
+    display: block;
+    position: relative;
+}
+  .about-photo-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 2rem 6rem 2rem 2rem;
+    object-fit: cover;
+    object-position: center;
+}
   .about-photo-label { font-size: 0.72rem; color: var(--ink-muted); letter-spacing: 0.1em; text-transform: uppercase; }
   .about-skills { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem; }
   .skill-row { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -502,8 +513,7 @@
     <p class="section-eyebrow">About Me</p>
     <div class="about-grid">
       <div class="about-photo">
-        <img src="about.png" alt="About me photo" class="about-photo">
-        <span class="about-photo-label">Photo placeholder</span>
+        <img src="about.png" alt="About me photo" class="about-photo-img">
       </div>
       <div class="about-right">
         <h2>Research-led. Accessibility-driven. Always curious.</h2>
