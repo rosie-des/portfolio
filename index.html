@@ -174,12 +174,13 @@
     border: none;
     display: block;
 }
-  .hero-photo-img {
+  .hero-photo img {
     width: 100%;
     height: auto;
-    object-fit: contain;
-    object-position: center;
     display: block;
+    border-radius: 2rem 2rem 6rem 2rem;
+    object-fit: cover;
+    object-position: top;
 }
   .hero-photo-placeholder {
     font-size: 4rem; opacity: 0.3;
@@ -427,7 +428,6 @@
     <div class="hero-photo-wrap">
       <div class="hero-photo">
          <img src="profile.jpg" alt="Profile photo" class="hero-photo-img">
-        <div class="hero-photo-label">Your photo here</div>
       </div>
       <div class="hero-photo-badge">
         <div class="badge-num">2</div>
