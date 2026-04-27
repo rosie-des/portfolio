@@ -164,15 +164,23 @@
   .hero-photo-wrap {
     position: relative; width: 100%; max-width: 380px;
   }
-  .hero-photo {
-    width: 100%; aspect-ratio: 3/4;
+ .hero-photo {
+    width: 100%;
     border-radius: 2rem 2rem 6rem 2rem;
     background: var(--parchment);
     border: 2px solid var(--border);
     display: flex; align-items: center; justify-content: center;
     flex-direction: column; gap: 0.8rem;
-    overflow: hidden; position: relative;
-  }
+    overflow: visible;
+    position: relative;
+}
+  .hero-photo-img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+}
   .hero-photo-placeholder {
     font-size: 4rem; opacity: 0.3;
   }
