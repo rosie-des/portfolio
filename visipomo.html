@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VisiPomo — UX Case Study | Madison Stewart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream:      #FAF7F2;
+    --warm-white: #FDFBF8;
+    --parchment:  #F2EDE4;
+    --ink:        #1C1714;
+    --ink-light:  #4A4340;
+    --ink-muted:  #8C827C;
+    --rose:       #C4614A;
+    --rose-light: #E8907D;
+    --rose-pale:  #F5E4DF;
+    --sage:       #6B8A6F;
+    --sage-pale:  #E3EDE4;
+    --teal:       #3B7A75;
+    --teal-pale:  #DFF0EE;
+    --amber:      #C48A2F;
+    --amber-pale: #F5EDD6;
+    --plum:       #7B4F8E;
+    --plum-pale:  #EEE0F5;
+    --border:     #E4DDD4;
+    --shadow:     rgba(28,23,20,0.07);
+    /* VisiPomo accent — deep magenta */
+    --visi:       #C2185B;
+    --visi-light: #E91E8C;
+    --visi-pale:  #FCE4EC;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 3rem;
+    background: rgba(253,251,248,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 1rem;
+    color: var(--ink); text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.09em;
+    text-transform: uppercase; color: var(--ink-muted);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover, .nav-links a.back { color: var(--visi); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: #0f0a1a;
+    display: grid; grid-template-columns: 1fr 1fr;
+    position: relative; overflow: hidden;
+  }
+  /* Animated gradient orbs */
+  .hero-orb {
+    position: absolute; border-radius: 50%;
+    pointer-events: none; filter: blur(80px);
+  }
+  .orb-1 {
+    width: 500px; height: 500px;
+    top: -100px; right: -100px;
+    background: radial-gradient(circle, rgba(233,30,140,0.4) 0%, transparent 70%);
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  .orb-2 {
+    width: 400px; height: 400px;
+    bottom: -80px; left: -60px;
+    background: radial-gradient(circle, rgba(194,24,91,0.3) 0%, transparent 70%);
+    animation: orbFloat 11s ease-in-out infinite reverse;
+  }
+  .orb-3 {
+    width: 300px; height: 300px;
+    top: 40%; left: 40%;
+    background: radial-gradient(circle, rgba(123,79,142,0.25) 0%, transparent 70%);
+    animation: orbFloat 13s ease-in-out infinite 2s;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(20px,-30px) scale(1.05); }
+    66% { transform: translate(-15px,15px) scale(0.97); }
+  }
+
+  .hero-left {
+    padding: 12rem 4rem 6rem 5rem;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative; z-index: 2;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--visi-light);
+    margin-bottom: 1.8rem;
+  }
+  .hero-tag::before { content: ''; width: 2rem; height: 1.5px; background: var(--visi-light); }
+  h1.hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 8vw, 7rem);
+    font-weight: 900; color: #fff;
+    line-height: 0.95; letter-spacing: -0.03em;
+    margin-bottom: 1.6rem;
+  }
+  h1.hero-title span { color: var(--visi-light); font-style: italic; }
+  .hero-subtitle {
+    font-size: 1.05rem; color: rgba(255,255,255,0.55);
+    max-width: 38ch; line-height: 1.65; margin-bottom: 2.8rem;
+  }
+  .hero-meta {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.8rem;
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .hero-meta-row { display: flex; gap: 3rem; }
+  .meta-item { display: flex; flex-direction: column; gap: 0.2rem; }
+  .meta-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+  .meta-value { font-size: 0.88rem; color: rgba(255,255,255,0.75); font-weight: 500; }
+
+  .hero-right {
+    display: flex; align-items: center; justify-content: center;
+    padding: 8rem 4rem 6rem; position: relative; z-index: 2;
+  }
+  .hero-visual {
+    width: 100%; max-width: 400px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.5rem; padding: 2.5rem;
+    backdrop-filter: blur(12px);
+  }
+  .hero-visual-label {
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--visi-light);
+    margin-bottom: 1.5rem;
+  }
+  .score-row {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.85rem 0; border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .score-row:last-child { border-bottom: none; }
+  .score-label { font-size: 0.82rem; color: rgba(255,255,255,0.6); flex: 1; }
+  .score-bar-track { width: 90px; height: 4px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+  .score-bar-fill { height: 100%; border-radius: 2px; }
+  .score-num { font-family: 'DM Mono', monospace; font-size: 0.75rem; color: rgba(255,255,255,0.4); width: 3rem; text-align: right; }
+  .proto-link {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    margin-top: 1.8rem; background: var(--visi); color: #fff;
+    padding: 0.75rem 1.4rem; border-radius: 0.5rem;
+    font-size: 0.82rem; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.2s; letter-spacing: 0.02em;
+  }
+  .proto-link:hover { background: var(--visi-light); transform: translateY(-1px); }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+  .section { padding: 7rem 0; }
+  .section-alt { background: var(--cream); }
+  .section-dark { background: #0f0a1a; }
+
+  .section-label {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-size: 0.68rem; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--visi);
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content: ''; display: block; width: 1.5rem; height: 1.5px; background: var(--visi); }
+
+  h2.section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--ink); margin-bottom: 1rem;
+  }
+  .section-dark h2.section-title { color: #fff; }
+  .section-intro { font-size: 1.05rem; color: var(--ink-light); max-width: 60ch; margin-bottom: 3.5rem; line-height: 1.75; }
+  .section-dark .section-intro { color: rgba(255,255,255,0.55); }
+
+  /* ── TAGS ── */
+  .tag { display: inline-block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; border-radius: 2rem; margin-right: 0.4rem; margin-bottom: 0.4rem; }
+  .tag-visi { background: var(--visi-pale); color: var(--visi); }
+  .tag-rose { background: var(--rose-pale); color: var(--rose); }
+  .tag-teal { background: var(--teal-pale); color: var(--teal); }
+  .tag-amber { background: var(--amber-pale); color: var(--amber); }
+  .tag-plum { background: var(--plum-pale); color: var(--plum); }
+  .tag-sage { background: var(--sage-pale); color: var(--sage); }
+
+  /* ── PROBLEM ── */
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    border: 2px solid var(--border); border-radius: 1rem;
+    overflow: hidden; margin-top: 3rem;
+  }
+  .problem-col { padding: 2.8rem; background: var(--warm-white); }
+  .problem-col.highlight { background: var(--visi-pale); }
+  .problem-col-label { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--visi); margin-bottom: 1.2rem; }
+  .problem-statement { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; line-height: 1.65; color: var(--ink); margin-bottom: 1.5rem; }
+  .problem-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .problem-bullets li { display: flex; align-items: flex-start; gap: 0.7rem; font-size: 0.9rem; color: var(--ink-light); line-height: 1.5; }
+  .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--visi); flex-shrink: 0; margin-top: 0.45rem; }
+
+  .hmw {
+    margin-top: 3.5rem;
+    background: #0f0a1a; border-radius: 1rem;
+    padding: 2.8rem 3rem; position: relative; overflow: hidden;
+  }
+  .hmw::before {
+    content: '"'; position: absolute; top: -1rem; left: 1.5rem;
+    font-family: 'Playfair Display', serif; font-size: 12rem;
+    color: rgba(255,255,255,0.03); line-height: 1; pointer-events: none;
+  }
+  .hmw-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--visi-light); margin-bottom: 1rem; }
+  .hmw-text { font-family: 'Playfair Display', serif; font-size: 1.55rem; font-style: italic; color: #fff; line-height: 1.5; max-width: 70ch; position: relative; z-index: 1; }
+  .hmw-text em { color: var(--visi-light); font-style: normal; }
+
+  /* ── RESEARCH STATS ── */
+  .research-stats {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5px; background: var(--border);
+    border: 1.5px solid var(--border); border-radius: 1rem; overflow: hidden;
+    margin-bottom: 4rem;
+  }
+  .stat-box { background: var(--warm-white); padding: 2rem 1.5rem; text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: var(--visi); line-height: 1; margin-bottom: 0.4rem; }
+  .stat-label { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.4; }
+
+  /* ── INSIGHTS ── */
+  .insights-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 4rem; }
+  .insight-card { background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 0.875rem; padding: 2rem; }
+  .insight-num { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--visi-light); font-weight: 500; letter-spacing: 0.06em; margin-bottom: 0.8rem; }
+  .insight-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; }
+  .insight-body { font-size: 0.88rem; color: var(--ink-light); line-height: 1.65; }
+  .insight-quote { margin-top: 1.2rem; padding: 1rem 1.2rem; background: var(--visi-pale); border-left: 3px solid var(--visi); border-radius: 0 0.4rem 0.4rem 0; font-size: 0.85rem; font-style: italic; color: var(--ink-light); line-height: 1.55; }
+  .insight-quote cite { display: block; margin-top: 0.4rem; font-style: normal; font-size: 0.75rem; color: var(--ink-muted); font-weight: 500; }
+
+  /* ── PERSONA ── */
+  .persona-card { background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 1rem; overflow: hidden; }
+  .persona-header { padding: 2rem; border-bottom: 1.5px solid var(--border); display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start; }
+  .persona-avatar { width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; background: var(--visi-pale); flex-shrink: 0; }
+  .persona-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--ink); }
+  .persona-role { font-size: 0.8rem; color: var(--ink-muted); margin-top: 0.15rem; }
+  .persona-quote { font-size: 0.85rem; font-style: italic; color: var(--ink-light); margin-top: 0.8rem; line-height: 1.55; }
+  .persona-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 0.8rem; }
+  .p-meta { font-size: 0.78rem; color: var(--ink-muted); }
+  .p-meta strong { color: var(--ink); font-weight: 600; }
+  .persona-body { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; }
+  .persona-section-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 0.8rem; }
+  .persona-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .persona-list li { font-size: 0.85rem; color: var(--ink-light); display: flex; align-items: flex-start; gap: 0.5rem; line-height: 1.5; }
+  .g-marker { color: var(--sage); flex-shrink: 0; font-weight: 700; }
+  .f-marker { color: var(--rose); flex-shrink: 0; font-weight: 700; }
+  .persona-story { padding: 1.5rem 2rem 2rem; border-top: 1.5px solid var(--border); font-size: 0.88rem; color: var(--ink-light); line-height: 1.75; background: var(--parchment); }
+
+  /* ── PAIN POINTS ── */
+  .pain-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .pain-card { background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 0.875rem; padding: 1.8rem; }
+  .pain-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--rose); line-height: 1; margin-bottom: 0.8rem; }
+  .pain-title { font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+  .pain-body { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.6; }
+
+  /* ── COMPETITIVE AUDIT ── */
+  .comp-table { width: 100%; border-collapse: collapse; border-radius: 1rem; overflow: hidden; border: 1.5px solid var(--border); }
+  .comp-table th { background: var(--parchment); padding: 1rem 1.2rem; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); border-bottom: 1.5px solid var(--border); }
+  .comp-table th:first-child { width: 30%; }
+  .comp-table td { padding: 0.9rem 1.2rem; font-size: 0.85rem; border-bottom: 1px solid var(--border); background: var(--warm-white); }
+  .comp-table tr:last-child td { border-bottom: none; }
+  .comp-table tr.highlight td { background: var(--visi-pale); font-weight: 600; }
+  .comp-name { font-weight: 700; color: var(--ink); }
+  .comp-name.visi { color: var(--visi); }
+  .check { color: var(--sage); font-weight: 700; }
+  .cross { color: var(--rose); font-weight: 700; }
+  .partial-text { color: var(--amber); font-weight: 600; font-size: 0.78rem; }
+  .gap-box { margin-top: 1.5rem; background: var(--visi-pale); border: 1.5px solid var(--visi); border-radius: 0.875rem; padding: 1.5rem 2rem; }
+  .gap-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--visi); margin-bottom: 0.6rem; }
+  .gap-text { font-size: 0.9rem; color: var(--ink-light); line-height: 1.65; }
+
+  /* ── PROCESS ── */
+  .process-steps { display: flex; flex-direction: column; gap: 1.5rem; margin-bottom: 3.5rem; }
+  .process-step { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.8rem; background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 1rem; }
+  .step-num { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+  .step-body { flex: 1; }
+  .step-title { font-weight: 700; font-size: 1rem; color: var(--ink); margin-bottom: 0.4rem; }
+  .step-desc { font-size: 0.88rem; color: var(--ink-light); line-height: 1.65; }
+
+  .pivot-box {
+    background: #0f0a1a; border-radius: 1rem;
+    padding: 2.5rem; color: rgba(255,255,255,0.65);
+    font-size: 0.92rem; line-height: 1.75;
+  }
+  .pivot-box strong { color: rgba(255,255,255,0.9); }
+  .pivot-box .pivot-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--visi-light); margin-bottom: 1rem; }
+
+  /* ── WIREFRAMES ── */
+  .wire-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+  .wire-card { background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 1rem; overflow: hidden; }
+  .wire-label-bar { background: var(--parchment); padding: 0.8rem 1.2rem; font-size: 0.78rem; font-weight: 600; color: var(--ink-muted); border-bottom: 1px solid var(--border); letter-spacing: 0.06em; }
+  .wire-body { padding: 1.5rem; }
+  .wire-mockup { background: #1a1a2e; border-radius: 0.6rem; padding: 1.2rem; font-size: 0.75rem; }
+  .wm-tabs { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+  .wm-tab { padding: 0.3rem 0.7rem; border-radius: 0.3rem; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 0.7rem; }
+  .wm-tab.act { background: #4285f4; color: #fff; }
+  .wm-title { font-weight: 700; color: #fff; margin-bottom: 0.3rem; font-size: 0.8rem; }
+  .wm-modes { display: flex; gap: 0.4rem; margin-bottom: 0.8rem; }
+  .wm-mode { font-size: 0.68rem; padding: 0.2rem 0.6rem; border-radius: 0.8rem; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+  .wm-mode.act { background: rgba(194,24,91,0.3); color: #f06; }
+  .wm-timer { font-size: 2.2rem; font-weight: 700; color: #fff; text-align: center; margin: 0.6rem 0; }
+  .wm-btn { display: block; text-align: center; background: #34a853; color: #fff; padding: 0.4rem 1rem; border-radius: 1rem; font-size: 0.75rem; font-weight: 600; margin-top: 0.6rem; }
+  .wire-sidebar { background: #0f0f1a; border-radius: 0.6rem; padding: 1rem; font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+  .ws-section { margin-bottom: 0.8rem; }
+  .ws-title { color: rgba(255,255,255,0.3); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.4rem; }
+  .ws-item { padding: 0.25rem 0 0.25rem 0.8rem; }
+
+  /* ── USABILITY ── */
+  .finding-card { background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 1rem; overflow: hidden; margin-bottom: 1.5rem; }
+  .finding-header { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 1.8rem; border-bottom: 1.5px solid var(--border); }
+  .finding-badge { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 2rem; flex-shrink: 0; }
+  .badge-r1 { background: var(--amber-pale); color: var(--amber); }
+  .badge-r2 { background: var(--teal-pale); color: var(--teal); }
+  .finding-title { font-weight: 600; font-size: 0.95rem; color: var(--ink); }
+  .finding-body { padding: 1.5rem 1.8rem; }
+  .finding-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .finding-col-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.6rem; }
+  .before-label { color: var(--rose); }
+  .after-label { color: var(--sage); }
+  .finding-col-body { font-size: 0.88rem; color: var(--ink-light); line-height: 1.65; }
+  .finding-screen { background: var(--cream); border-radius: 0.4rem; padding: 0.8rem 1rem; margin-top: 0.6rem; border: 1px solid var(--border); font-size: 0.8rem; color: var(--ink-muted); font-style: italic; display: flex; align-items: flex-start; gap: 0.5rem; }
+  .finding-screen::before { content: '↳'; color: var(--visi); font-style: normal; flex-shrink: 0; }
+
+  /* ── HI-FI SCREENS ── */
+  .hifi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+  .hifi-screen { background: #1a1a2e; border-radius: 1rem; overflow: hidden; border: 1.5px solid rgba(255,255,255,0.08); }
+  .hs-bar { height: 6px; }
+  .hs-body { padding: 1.2rem; }
+  .hs-label-sm { font-size: 0.68rem; color: rgba(255,255,255,0.4); text-align: center; margin-bottom: 0.3rem; }
+  .hs-timer { font-size: 2.5rem; font-weight: 700; color: #fff; text-align: center; margin: 0.4rem 0; }
+  .hs-modes { display: flex; gap: 0.4rem; justify-content: center; margin-bottom: 0.6rem; }
+  .hs-mode { font-size: 0.68rem; padding: 0.2rem 0.6rem; border-radius: 0.6rem; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); }
+  .hs-mode.act { background: #4285f4; color: #fff; }
+  .hs-progress { height: 3px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin-bottom: 0.6rem; }
+  .hs-prog-fill { height: 100%; background: var(--visi-light); }
+  .hs-btn { display: block; text-align: center; background: #34a853; color: #fff; border-radius: 0.6rem; padding: 0.4rem; font-size: 0.8rem; font-weight: 600; }
+  .hs-caption { font-size: 0.72rem; color: rgba(255,255,255,0.25); text-align: center; padding: 0.6rem; border-top: 1px solid rgba(255,255,255,0.05); }
+
+  /* ── OUTCOMES ── */
+  .outcomes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3.5rem; }
+  .outcome-card { background: var(--warm-white); border: 1.5px solid var(--border); border-radius: 1rem; padding: 2rem; }
+  .outcome-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 0.5rem; }
+  .outcome-desc { font-size: 0.88rem; color: var(--ink-light); line-height: 1.55; }
+
+  /* ── REFLECTION ── */
+  .reflection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3.5rem; }
+  .reflection-card { border-radius: 1rem; padding: 2.2rem; }
+  .rc-well { background: var(--sage-pale); border: 1.5px solid #B5CCBA; }
+  .rc-diff { background: var(--rose-pale); border: 1.5px solid #E8B0A0; }
+  .rc-next { background: var(--teal-pale); border: 1.5px solid #A0CECA; }
+  .rc-v2 { background: var(--amber-pale); border: 1.5px solid #E0C48A; }
+  .rc-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1rem; }
+  .rc-well .rc-label { color: var(--sage); }
+  .rc-diff .rc-label { color: var(--rose); }
+  .rc-next .rc-label { color: var(--teal); }
+  .rc-v2 .rc-label { color: var(--amber); }
+  .reflection-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.75rem; }
+  .reflection-card p, .reflection-card li { font-size: 0.88rem; color: var(--ink-light); line-height: 1.7; }
+  .reflection-card ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.4rem; }
+  .reflection-card li { display: flex; gap: 0.5rem; align-items: flex-start; }
+  .reflection-card li::before { content: '→'; flex-shrink: 0; }
+  .rc-next li::before { color: var(--teal); }
+  .rc-v2 li::before { color: var(--amber); }
+
+  /* ── FOOTER ── */
+  footer { background: #0f0a1a; padding: 5rem 3rem; text-align: center; }
+  .footer-name { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+  .footer-role { color: rgba(255,255,255,0.35); font-size: 0.88rem; margin-bottom: 2.5rem; }
+  .footer-links { display: flex; align-items: center; justify-content: center; gap: 2rem; list-style: none; flex-wrap: wrap; }
+  .footer-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--visi-light); }
+  .footer-divider { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+  .footer-copy { margin-top: 3rem; font-size: 0.78rem; color: rgba(255,255,255,0.15); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  .fade-up { animation: fadeUp 0.7s ease both; }
+  .d1 { animation-delay: 0.1s; } .d2 { animation-delay: 0.22s; } .d3 { animation-delay: 0.34s; } .d4 { animation-delay: 0.46s; }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 10rem 2rem 5rem; }
+    .container { padding: 0 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .insights-grid, .two-col, .reflection-grid { grid-template-columns: 1fr; }
+    .research-stats { grid-template-columns: 1fr 1fr; }
+    .pain-grid { grid-template-columns: 1fr 1fr; }
+    .hifi-grid { grid-template-columns: 1fr; }
+    .outcomes-grid { grid-template-columns: 1fr 1fr; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .persona-body { grid-template-columns: 1fr; }
+    .finding-cols { grid-template-columns: 1fr; }
+    .wire-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Madison Stewart</a>
+  <ul class="nav-links">
+    <li><a href="index.html#work" class="back">← All Work</a></li>
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#usability">Testing</a></li>
+    <li><a href="#outcomes">Outcomes</a></li>
+    <li><a href="#reflection">Reflection</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="orb-1 hero-orb"></div>
+  <div class="orb-2 hero-orb"></div>
+  <div class="orb-3 hero-orb"></div>
+  <div class="hero-left">
+    <p class="hero-tag fade-up">End-to-End Product Design · Design Engineering</p>
+    <h1 class="hero-title fade-up d1">Visi<span>Pomo</span></h1>
+    <p class="hero-subtitle fade-up d2">A vision board meets productivity tool — designed to keep you focused and reminded of <em>why</em> you work. Researched, designed, and vibe-coded into a live web app.</p>
+    <div class="hero-meta fade-up d3">
+      <div class="hero-meta-row">
+        <div class="meta-item"><span class="meta-label">Role</span><span class="meta-value">UX Research, Product Design, Design Engineering</span></div>
+        <div class="meta-item"><span class="meta-label">Duration</span><span class="meta-value">2 weeks</span></div>
+      </div>
+      <div class="hero-meta-row" style="margin-top:0.5rem">
+        <div class="meta-item"><span class="meta-label">Platform</span><span class="meta-value">Web App (Desktop)</span></div>
+        <div class="meta-item"><span class="meta-label">Tools</span><span class="meta-value">Figma, AI-assisted development, Vercel</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right fade-up d4">
+    <div class="hero-visual">
+      <p class="hero-visual-label">Project Snapshot</p>
+      <div class="score-row">
+        <span class="score-label">Live on the web</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;background:var(--visi-light)"></div></div>
+        <span class="score-num">✓ Live</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Research participants</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:80%;background:#E8907D"></div></div>
+        <span class="score-num">5+</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Usability rounds</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;background:var(--visi-light)"></div></div>
+        <span class="score-num">2</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Competitor apps analyzed</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:60%;background:#E8907D"></div></div>
+        <span class="score-num">3+</span>
+      </div>
+      <div class="score-row">
+        <span class="score-label">Market gap filled</span>
+        <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;background:var(--visi-light)"></div></div>
+        <span class="score-num">Unique</span>
+      </div>
+      <a href="https://visipomo.vercel.app/" target="_blank" class="proto-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Visit Live App: visipomo.vercel.app
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="container">
+    <p class="section-label">01 — Problem</p>
+    <h2 class="section-title">Productivity tools make you efficient. None make you motivated.</h2>
+    <p class="section-intro">Before building anything, I challenged the assumption that a pomodoro timer was a solved problem. Research revealed a gap no existing product had addressed: the emotional dimension of focused work.</p>
+    <div class="problem-grid">
+      <div class="problem-col">
+        <p class="problem-col-label">The Gap in the Market</p>
+        <p class="problem-statement">"Pomodoro apps are functional but cold. They tell you when to work. None of them remind you why."</p>
+        <p style="font-size:0.88rem;color:var(--ink-light);line-height:1.65;margin-bottom:1.2rem">Users already relied on YouTube, Pinterest, and Spotify to create motivating study environments — but this meant juggling 4–5 apps, constantly breaking focus. No single product connected their goals to their work sessions.</p>
+        <ul class="problem-bullets">
+          <li><span class="bullet-dot"></span>Existing apps (Flocus, Forest, Pomofocus) offer aesthetics but no goal alignment</li>
+          <li><span class="bullet-dot"></span>YouTube is the #1 informal pomodoro tool — but it has no timer or productivity layer</li>
+          <li><span class="bullet-dot"></span>Personal vision boards (Canva, Pinterest) exist but are completely disconnected from work sessions</li>
+          <li><span class="bullet-dot"></span>No app supports multi-modal audio: silence, ambient sound, and motivational content in one place</li>
+        </ul>
+      </div>
+      <div class="problem-col highlight">
+        <p class="problem-col-label">The Opportunity</p>
+        <p class="problem-statement">"Build a pomodoro tool where your vision board is the background — so every work session is a reminder of what you're working toward."</p>
+        <ul class="problem-bullets">
+          <li><span class="bullet-dot"></span>Personal uploads: your Canva vision board, Pinterest imagery, or custom photos</li>
+          <li><span class="bullet-dot"></span>YouTube integration: play study vlogs or motivational content in the background</li>
+          <li><span class="bullet-dot"></span>Multi-mode audio: deep focus silence, planning energy, subliminal boost</li>
+          <li><span class="bullet-dot"></span>Built-in success activities: habit tracker, journaling, to-do lists, motivational quotes</li>
+          <li><span class="bullet-dot"></span>One destination — zero app switching</li>
+        </ul>
+      </div>
+    </div>
+    <div class="hmw">
+      <p class="hmw-label">How Might We</p>
+      <p class="hmw-text">How might we create a <em>single, immersive space</em> that combines a productivity timer with <em>personalized, goal-aligned motivation</em> — so users feel connected to their ambitions while they work?</p>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="section section-alt" id="research">
+  <div class="container">
+    <p class="section-label">02 — Research</p>
+    <h2 class="section-title">My assumptions about motivation were wrong. Research fixed that.</h2>
+    <p class="section-intro">I conducted user interviews and social media analysis targeting goal-oriented students and young professionals who already used pomodoro techniques. What I found challenged my initial design direction.</p>
+    <div class="research-stats">
+      <div class="stat-box"><div class="stat-num">100%</div><div class="stat-label">of participants had used a pomodoro app and noticed a productivity improvement</div></div>
+      <div class="stat-box"><div class="stat-num">#1</div><div class="stat-label">YouTube was the most-used informal productivity tool — used for lo-fi, study vlogs, and motivation</div></div>
+      <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">distinct audio needs identified: deep silence, verbal energy, and ambient/subliminal sound</div></div>
+      <div class="stat-box"><div class="stat-num">0</div><div class="stat-label">existing apps combine personalized vision boards + YouTube + productivity tools in one place</div></div>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <p class="insight-num">Insight 01</p>
+        <h3 class="insight-title">Motivation Is Personal, Not Curated</h3>
+        <p class="insight-body">I initially assumed users would respond to a curated library of aspirational imagery. Research revealed this was wrong — users wanted to use their own vision boards, their own Pinterest boards, their own goals. Generic "success" imagery had the opposite effect for many.</p>
+        <div class="insight-quote">
+          "What if it showed images from my own life and goals instead of someone else's mansion?"
+          <cite>— Interview participant, college student, age 21</cite>
+        </div>
+      </div>
+      <div class="insight-card">
+        <p class="insight-num">Insight 02</p>
+        <h3 class="insight-title">Audio Mode Matters as Much as Visual</h3>
+        <p class="insight-body">Users clearly distinguished between three types of work sessions with different audio needs: total silence for deep study, verbal/upbeat energy for planning and creative work, and ambient subconscious sounds for flow state. No existing app supported all three.</p>
+        <div class="insight-quote">
+          "For writing, I need music. For math, I need silence. For planning, I want someone talking in the background."
+          <cite>— Interview participant, freelancer, age 24</cite>
+        </div>
+      </div>
+      <div class="insight-card">
+        <p class="insight-num">Insight 03</p>
+        <h3 class="insight-title">App-Switching Is the Real Productivity Killer</h3>
+        <p class="insight-body">Users reported spending 10–20 minutes "setting up" their study session — opening YouTube, Spotify, Notion, a timer app — before any actual work began. The setup ritual was itself a source of procrastination. Consolidation, not features, was the core value proposition.</p>
+        <div class="insight-quote">
+          "By the time I've got everything open, I've already lost momentum."
+          <cite>— Survey respondent, college junior, age 22</cite>
+        </div>
+      </div>
+      <div class="insight-card">
+        <p class="insight-num">Insight 04</p>
+        <h3 class="insight-title">The Untapped Niche: Vision Boarding + Productivity</h3>
+        <p class="insight-body">Social media analysis confirmed a significant gap: communities around vision boarding, manifestation, and productivity overlap strongly but no product served both. The audience exists and is actively searching for this combination — it just doesn't exist yet.</p>
+        <div class="insight-quote">
+          "I want the app to feel like it was made for someone like me — ambitious and visual."
+          <cite>— Interview participant, age 23</cite>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.2rem">Research Methods</p>
+      <span class="tag tag-visi">User interviews</span>
+      <span class="tag tag-rose">Social media analysis</span>
+      <span class="tag tag-teal">Competitor audit</span>
+      <span class="tag tag-amber">Online surveys</span>
+      <span class="tag tag-plum">Community forum analysis</span>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONA -->
+<section class="section" id="persona">
+  <div class="container">
+    <p class="section-label">03 — User</p>
+    <h2 class="section-title">Designing for Jade — and everyone like her.</h2>
+    <p class="section-intro">Research consistently pointed to one primary user archetype: the ambitious, visually-driven student or young professional who already uses multiple tools to stay motivated, but has never had them in one place.</p>
+
+    <div style="margin-bottom:2rem">
+      <div style="background:var(--visi-pale);border-left:3px solid var(--visi);border-radius:0 0.6rem 0.6rem 0;padding:1.2rem 1.5rem;font-size:0.88rem;color:var(--ink-light);line-height:1.65">
+        <strong style="color:var(--visi)">Problem Statement:</strong> Jade is an ambitious college student who needs a single focused environment that keeps her goals visible because switching between multiple apps destroys her momentum and motivation.
+      </div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-header">
+        <div class="persona-avatar">👩🏽‍💻</div>
+        <div>
+          <div class="persona-name">Jade, 22</div>
+          <div class="persona-role">College Junior · Student / Freelancer · Atlanta, GA</div>
+          <p class="persona-quote">"I know what I want my life to look like — I just need something that reminds me of that while I'm actually doing the work."</p>
+          <div class="persona-meta">
+            <span class="p-meta">Age: <strong>22</strong></span>
+            <span class="p-meta">Status: <strong>College Junior</strong></span>
+            <span class="p-meta">Tools: <strong>YouTube, Pinterest, Notion, Spotify, Canva</strong></span>
+          </div>
+        </div>
+      </div>
+      <div class="persona-body">
+        <div>
+          <p class="persona-section-label">Goals</p>
+          <ul class="persona-list">
+            <li><span class="g-marker">✓</span>Stay motivated during long study sessions without losing sight of her ambitions</li>
+            <li><span class="g-marker">✓</span>Integrate her vision board into her daily workflow, not just look at it occasionally</li>
+            <li><span class="g-marker">✓</span>Track habits and journal in the same space where she works</li>
+            <li><span class="g-marker">✓</span>Use YouTube and Pinterest content without getting distracted by the full apps</li>
+          </ul>
+        </div>
+        <div>
+          <p class="persona-section-label">Frustrations</p>
+          <ul class="persona-list">
+            <li><span class="f-marker">✕</span>Existing pomodoro timers feel cold and impersonal — no emotional resonance</li>
+            <li><span class="f-marker">✕</span>Has to use 4–5 apps to get into her productivity flow state</li>
+            <li><span class="f-marker">✕</span>Generic "success" imagery in existing apps doesn't connect to her specific goals</li>
+            <li><span class="f-marker">✕</span>No app connects her focus sessions to the actual goals she's working toward</li>
+          </ul>
+        </div>
+      </div>
+      <div class="persona-story">
+        Jade has big ambitions — she wants to graduate debt-free, start a design business, and travel the world. She has a detailed Canva vision board and a Pinterest full of inspiration, but every time she sits down to study, she ends up context-switching. She opens YouTube for a study vlog, switches to Spotify, checks her to-do list in Notion, and forgets to start her timer. By the time she's "set up," 20 minutes have passed. She needs everything in one immersive, motivating space — and she needs it to feel like hers.
+      </div>
+    </div>
+
+    <!-- Pain Points -->
+    <div style="margin-top:3rem">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.5rem">Key Pain Points</p>
+      <div class="pain-grid">
+        <div class="pain-card"><div class="pain-num">01</div><div class="pain-title">No Goal Alignment</div><div class="pain-body">Apps track time spent working, but never connect work sessions to personal goals. Users can't see why they're working while they work.</div></div>
+        <div class="pain-card"><div class="pain-num">02</div><div class="pain-title">App Switching</div><div class="pain-body">Users toggle between YouTube, Pinterest, Spotify, a timer, and a to-do list. The setup ritual itself breaks focus before a session even begins.</div></div>
+        <div class="pain-card"><div class="pain-num">03</div><div class="pain-title">Generic Visuals</div><div class="pain-body">Curated "success" imagery doesn't resonate with everyone. Users want to use their own vision boards — their own goals, not someone else's lifestyle.</div></div>
+        <div class="pain-card"><div class="pain-num">04</div><div class="pain-title">One-Size Audio</div><div class="pain-body">Apps offer one audio mode. Users need context-specific audio — silence, ambient, or motivational — based on the type of work they're doing.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE AUDIT -->
+<section class="section section-alt" id="competitive">
+  <div class="container">
+    <p class="section-label">04 — Competitive Analysis</p>
+    <h2 class="section-title">Every competitor misses the same thing.</h2>
+    <p class="section-intro">I audited three main competitors — Flocus (the leading aesthetic pomodoro app), YouTube study vlogs (the most popular informal tool), and existing productivity apps — to map the gap VisiPomo fills.</p>
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>Flocus</th>
+          <th>YouTube Study Vlogs</th>
+          <th class="visi">VisiPomo ✓</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="comp-name">Pomodoro timer</td><td><span class="check">✓</span></td><td><span class="partial-text">Some videos</span></td><td class="comp-name visi"><span class="check">✓</span></td></tr>
+        <tr><td class="comp-name">YouTube integration</td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td class="comp-name visi"><span class="check">✓</span></td></tr>
+        <tr><td class="comp-name">Personal vision board</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="comp-name visi"><span class="check">✓</span></td></tr>
+        <tr><td class="comp-name">Habit tracking</td><td><span class="partial-text">Partial</span></td><td><span class="cross">✗</span></td><td class="comp-name visi"><span class="check">✓</span></td></tr>
+        <tr><td class="comp-name">Multi-mode audio</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="comp-name visi"><span class="check">✓</span></td></tr>
+        <tr><td class="comp-name">Goal-setting tools</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="comp-name visi"><span class="check">✓</span></td></tr>
+        <tr><td class="comp-name">Journaling</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="comp-name visi"><span class="check">✓</span></td></tr>
+        <tr class="highlight"><td class="comp-name">Personalized immersive environment</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td class="comp-name visi"><span class="check">✓ Only app</span></td></tr>
+      </tbody>
+    </table>
+    <div class="gap-box">
+      <div class="gap-label">Key Opportunity Gap</div>
+      <div class="gap-text">No competitor combines personalized vision board imagery, YouTube integration, multi-mode audio, and goal-tracking productivity tools in a single pomodoro experience. VisiPomo is the only product that addresses the full emotional and practical needs of a goal-oriented focus session.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section" id="process">
+  <div class="container">
+    <p class="section-label">05 — Design Process</p>
+    <h2 class="section-title">From wireframes to a live deployed product.</h2>
+    <p class="section-intro">I moved through the full design and development cycle in two weeks — paper sketches, digital wireframes, usability testing, high-fidelity mockups, and AI-assisted live deployment on Vercel.</p>
+
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num" style="background:var(--visi-pale);border:2px solid var(--visi);color:var(--visi)">01</div>
+        <div class="step-body">
+          <div class="step-title">Paper Wireframes</div>
+          <div class="step-desc">Sketched 3 core views — Timer, Planning, and Vision Board — to quickly explore layout concepts before committing to pixels. Focused on establishing the sidebar architecture and the relationship between the background media and the timer overlay.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num" style="background:var(--amber-pale);border:2px solid var(--amber);color:var(--amber)">02</div>
+        <div class="step-body">
+          <div class="step-title">Digital Wireframes in Figma</div>
+          <div class="step-desc">Built low-fidelity digital wireframes establishing the tab navigation (Planning / Syncing / Timer Views), sidebar structure (Visions, Success Activities, Resources), and the core timer module. Used these for the first round of usability testing.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num" style="background:var(--teal-pale);border:2px solid var(--teal);color:var(--teal)">03</div>
+        <div class="step-body">
+          <div class="step-title">Usability Testing — Round 1</div>
+          <div class="step-desc">Ran moderated sessions with target users. Identified 3 key issues: feature discoverability (sidebar-only access), missing widget component, and need for more customization in vision board management. Iterated design before high-fidelity phase.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num" style="background:var(--plum-pale);border:2px solid var(--plum);color:var(--plum)">04</div>
+        <div class="step-body">
+          <div class="step-title">High-Fidelity Mockups</div>
+          <div class="step-desc">Applied the full visual design — dark immersive background, frosted timer overlay, the three-mode structure (Deep Focus / Planning / Vision Board). Used Google's color palette for familiarity while pushing toward a more immersive, personal aesthetic.</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num" style="background:var(--rose-pale);border:2px solid var(--rose);color:var(--rose)">05</div>
+        <div class="step-body">
+          <div class="step-title">AI-Assisted Development & Deployment</div>
+          <div class="step-desc">Used AI-assisted vibe-coding tools to build and deploy the live app on Vercel. This was intentional — I wanted to demonstrate that UX designers who can bridge design and code are genuinely rare, and that AI makes this more achievable than ever. The live app is at <a href="https://visipomo.vercel.app/" target="_blank" style="color:var(--visi)">visipomo.vercel.app</a>.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pivot-box">
+      <p class="pivot-label">The Key Design Insight</p>
+      <p>The biggest structural decision was building <strong>three distinct modes</strong> (Deep Focus, Planning, Vision Board) that share one background media layer but present completely different UI surfaces. This wasn't in the original wireframes — it emerged from usability testing when users described wanting fundamentally different experiences depending on their current task type.</p>
+      <p style="margin-top:1rem">The sidebar became the "soul" of the app — the place where users connect their goals (vision boards, habit tracker, journals) to their sessions. Every session starts with the question: <strong>what are you working toward today?</strong></p>
+    </div>
+
+    <!-- Wireframe visuals -->
+    <div style="margin-top:3rem">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.5rem">Digital Wireframe Reference</p>
+      <div class="wire-grid">
+        <div class="wire-card">
+          <div class="wire-label-bar">Timer View — Core Module</div>
+          <div class="wire-body">
+            <div class="wire-mockup">
+              <div class="wm-tabs"><span class="wm-tab">Planning</span><span class="wm-tab">Syncing</span><span class="wm-tab act">Timer Views</span></div>
+              <div class="wm-title">THE GRIND ✏️</div>
+              <div class="wm-modes"><span class="wm-mode act">Focus</span><span class="wm-mode">Short Break</span><span class="wm-mode">Long Break</span></div>
+              <div class="wm-timer">50:00</div>
+              <div class="wm-btn">▶ Start</div>
+            </div>
+            <p style="font-size:0.78rem;color:var(--ink-muted);margin-top:0.8rem;line-height:1.5">Central timer with named session, mode toggle, and session type selector. Media background fills the full screen behind this overlay.</p>
+          </div>
+        </div>
+        <div class="wire-card">
+          <div class="wire-label-bar">Sidebar — Vision & Success Activities</div>
+          <div class="wire-body">
+            <div class="wire-sidebar">
+              <div class="ws-section"><div class="ws-title">Visions</div><div class="ws-item">📋 Vision Boards</div><div class="ws-item">🖼 Image Library</div><div class="ws-item">⬆️ My Uploads</div></div>
+              <div class="ws-section"><div class="ws-title">Success Activities</div><div class="ws-item">✅ Habit Tracker</div><div class="ws-item">💬 Motivational Quotes</div><div class="ws-item">📖 Journals</div><div class="ws-item">📝 To Do Lists</div></div>
+              <div class="ws-section"><div class="ws-title">Resources</div><div class="ws-item">🔗 Link Library</div></div>
+            </div>
+            <p style="font-size:0.78rem;color:var(--ink-muted);margin-top:0.8rem;line-height:1.5">Persistent sidebar houses all goal-alignment and success activities — accessible from any mode without interrupting the current session.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USABILITY -->
+<section class="section section-alt" id="usability">
+  <div class="container">
+    <p class="section-label">06 — Usability Testing</p>
+    <h2 class="section-title">Two rounds of testing. Six findings. Every one addressed.</h2>
+    <p class="section-intro">I ran two rounds of moderated usability testing with goal-oriented students and professionals familiar with pomodoro techniques. Participants completed 3 core tasks per session: start a focus session, set up a vision board, and switch audio mode.</p>
+
+    <div style="margin-bottom:2.5rem;display:flex;gap:0.8rem;flex-wrap:wrap">
+      <span class="tag tag-visi">2 rounds of testing</span>
+      <span class="tag tag-rose">5+ participants total</span>
+      <span class="tag tag-amber">3 tasks per session</span>
+      <span class="tag tag-teal">Moderated remote sessions</span>
+    </div>
+
+    <p style="font-size:0.9rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;letter-spacing:0.04em">Round 1 Findings</p>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="finding-badge badge-r1">Round 1 · Major</span>
+        <span class="finding-title">Features only accessible via sidebar — users missed them entirely</span>
+      </div>
+      <div class="finding-body">
+        <div class="finding-cols">
+          <div>
+            <p class="finding-col-label before-label">Before</p>
+            <p class="finding-col-body">Habit tracking, journaling, and to-do lists were accessible only through the sidebar navigation. During testing, several users completed all three tasks without discovering these features existed — they were too subtle to notice.</p>
+            <div class="finding-screen">Sidebar-only access → users focused on the central timer → secondary features invisible</div>
+          </div>
+          <div>
+            <p class="finding-col-label after-label">After</p>
+            <p class="finding-col-body">Added a persistent floating action button on the timer view providing quick access to all success activities. Also added contextual nudges during sessions ("Want to log this session in your journal?") to surface features at the right moment.</p>
+            <div class="finding-screen">FAB on timer view + contextual nudges → feature discovery increased significantly in Round 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="finding-badge badge-r1">Round 1 · Major</span>
+        <span class="finding-title">No desktop widget — users wanted timer access during deep work without the full app</span>
+      </div>
+      <div class="finding-body">
+        <div class="finding-cols">
+          <div>
+            <p class="finding-col-label before-label">Before</p>
+            <p class="finding-col-body">The original design required the full app to be visible to see the timer. Users in deep work sessions wanted a minimal overlay — just the timer countdown — without the immersive environment taking up their full screen.</p>
+            <div class="finding-screen">Full-screen only → forces app to be primary window → incompatible with multitasking workflows</div>
+          </div>
+          <div>
+            <p class="finding-col-label after-label">After</p>
+            <p class="finding-col-body">Designed a compact desktop widget component showing just the timer and session name. Users can minimize to the widget while working in other apps, keeping the timer visible without interrupting their workflow.</p>
+            <div class="finding-screen">Mini widget component → 90px timer display → session name → break alert → accessible via system tray</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="finding-badge badge-r1">Round 1 · Minor</span>
+        <span class="finding-title">Vision board customization too limited — users wanted to organize by goal</span>
+      </div>
+      <div class="finding-body">
+        <div class="finding-cols">
+          <div>
+            <p class="finding-col-label before-label">Before</p>
+            <p class="finding-col-body">The vision board upload system allowed images but no organization — no labels, no reordering, no grouping by goal or theme. Users with multiple goals (career, travel, fitness) wanted to be able to switch between themed boards.</p>
+            <div class="finding-screen">Flat image grid → no labels → no goal grouping → all images mixed together</div>
+          </div>
+          <div>
+            <p class="finding-col-label after-label">After</p>
+            <p class="finding-col-body">Added board labels, goal-based grouping, drag-to-reorder, and the ability to assign a specific board as the active background. Users can now maintain separate boards for "Career Goals," "Travel," and "Personal Growth."</p>
+            <div class="finding-screen">Named boards → drag reorder → set active board → custom thumbnails → goal-tagged images</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size:0.9rem;font-weight:700;color:var(--ink);margin:2rem 0 1.2rem;letter-spacing:0.04em">Round 2 Findings</p>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="finding-badge badge-r2">Round 2 · Major</span>
+        <span class="finding-title">Cold start confusion — new users didn't know where to begin</span>
+      </div>
+      <div class="finding-body">
+        <div class="finding-cols">
+          <div>
+            <p class="finding-col-label before-label">Before</p>
+            <p class="finding-col-body">First-time users opened the app to a blank immersive environment with no onboarding. They didn't know how to connect their YouTube playlist or upload their vision board before starting — the "empty state" was confusing rather than inviting.</p>
+            <div class="finding-screen">Blank dark screen → no onboarding → users unsure where to start → 2/5 abandoned setup</div>
+          </div>
+          <div>
+            <p class="finding-col-label after-label">After</p>
+            <p class="finding-col-body">Added a guided 3-step onboarding flow: (1) connect your motivation source (YouTube link or image upload), (2) name your first session, (3) choose your audio mode. Users arrive at their first session feeling set up, not lost.</p>
+            <div class="finding-screen">3-step setup wizard → motivation source → session name → audio mode → arrive ready to work</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding-card">
+      <div class="finding-header">
+        <span class="finding-badge badge-r2">Round 2 · Minor</span>
+        <span class="finding-title">Audio mode labels unclear — users couldn't choose confidently</span>
+      </div>
+      <div class="finding-body">
+        <div class="finding-cols">
+          <div>
+            <p class="finding-col-label before-label">Before</p>
+            <p class="finding-col-body">The three audio modes were labeled with internal names: "Deep Focus," "Planning Mode," "Subliminal Boost." Users understood the first two but were confused by "Subliminal Boost" — the name didn't communicate what they'd actually hear.</p>
+            <div class="finding-screen">"Subliminal Boost" label → unclear what audio plays → 3/5 users chose wrong mode for their task type</div>
+          </div>
+          <div>
+            <p class="finding-col-label after-label">After</p>
+            <p class="finding-col-body">Added a one-line description under each audio mode label: "Deep Focus (silence + ambient)" / "Planning Mode (upbeat + verbal)" / "Subliminal Boost (subconscious sounds, no lyrics)." Users reported choosing correctly 100% of the time in validation testing.</p>
+            <div class="finding-screen">Mode name + descriptor line + audio preview icon → confident selection → correct mode chosen every time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HIGH FIDELITY -->
+<section class="section section-dark" id="hifi">
+  <div class="container">
+    <p class="section-label" style="color:var(--visi-light)">07 — Final Design</p>
+    <h2 class="section-title">Three modes. One immersive space. Live on the web.</h2>
+    <p class="section-intro">The high-fidelity design brings together the immersive media background, central timer module, and full suite of success activities. Live at <a href="https://visipomo.vercel.app/" target="_blank" style="color:var(--visi-light)">visipomo.vercel.app</a>.</p>
+
+    <div class="hifi-grid">
+      <div class="hifi-screen">
+        <div class="hs-bar" style="background:linear-gradient(90deg,#1a237e,#283593)"></div>
+        <div class="hs-body">
+          <div class="hs-label-sm">THE GRIND · Deep Focus</div>
+          <div class="hs-timer">50:00</div>
+          <div class="hs-modes"><span class="hs-mode act">Focus</span><span class="hs-mode">Break</span></div>
+          <div class="hs-progress"><div class="hs-prog-fill" style="width:35%"></div></div>
+          <div class="hs-btn">▶ Start Session</div>
+        </div>
+        <div class="hs-caption">Deep Focus Mode — silence + ambient</div>
+      </div>
+      <div class="hifi-screen">
+        <div class="hs-bar" style="background:linear-gradient(90deg,#1b5e20,#2e7d32)"></div>
+        <div class="hs-body">
+          <div class="hs-label-sm">Planning Mode · Now Playing</div>
+          <div style="font-size:0.78rem;color:rgba(255,255,255,0.6);text-align:center;margin-bottom:0.5rem">Osaki · Rooftop Memories</div>
+          <div class="hs-modes"><span class="hs-mode act">Planning</span><span class="hs-mode">Timer</span></div>
+          <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);text-align:center;margin:0.5rem 0">Journals · Habits · To-Do</div>
+          <div class="hs-btn" style="background:#c2185b">📋 Open Activities</div>
+        </div>
+        <div class="hs-caption">Planning Mode — upbeat + verbal energy</div>
+      </div>
+      <div class="hifi-screen">
+        <div class="hs-bar" style="background:linear-gradient(90deg,#4a148c,#6a1b9a)"></div>
+        <div class="hs-body">
+          <div class="hs-label-sm">Vision Board · My Goals</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.3rem;margin:0.5rem 0">
+            <div style="height:42px;background:rgba(255,255,255,0.08);border-radius:0.3rem;display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:rgba(255,255,255,0.3)">Career</div>
+            <div style="height:42px;background:rgba(194,24,91,0.2);border-radius:0.3rem;display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:var(--visi-light)">Travel ✓</div>
+            <div style="height:42px;background:rgba(255,255,255,0.08);border-radius:0.3rem;display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:rgba(255,255,255,0.3)">Fitness</div>
+            <div style="height:42px;background:rgba(255,255,255,0.08);border-radius:0.3rem;display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:rgba(255,255,255,0.3)">+ Add</div>
+          </div>
+          <div class="hs-btn" style="background:#7b4f8e;font-size:0.72rem">✦ Set as Background</div>
+        </div>
+        <div class="hs-caption">Vision Board — personal goal imagery</div>
+      </div>
+    </div>
+
+    <div style="margin-top:3rem;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem">
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.8rem">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--visi-light);margin-bottom:0.8rem">Accessibility</div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.65">High-contrast text maintained via frosted overlay on all media backgrounds. Full keyboard navigation. Auto-play video can be disabled. Reduced motion option respects vestibular sensitivities.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.8rem">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--visi-light);margin-bottom:0.8rem">Design Engineering</div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.65">Built using AI-assisted vibe-coding and deployed on Vercel. This project demonstrates that UX designers who can ship code create significantly more value — and that AI makes this more achievable than ever.</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:1rem;padding:1.8rem">
+        <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--visi-light);margin-bottom:0.8rem">Live Product</div>
+        <p style="font-size:0.85rem;color:rgba(255,255,255,0.6);line-height:1.65">Unlike most UX case studies which end at prototype, VisiPomo is a working product accessible to anyone. Real users have interacted with it, providing ongoing qualitative feedback beyond the formal usability study rounds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="section" id="outcomes">
+  <div class="container">
+    <p class="section-label">08 — Outcomes</p>
+    <h2 class="section-title">What the design process produced.</h2>
+    <p class="section-intro">Outcomes for VisiPomo span both the design quality demonstrated in testing and the real-world achievement of shipping a live product — which is itself a differentiating outcome for a UX portfolio project.</p>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-num" style="color:var(--visi)">100%</div>
+        <p class="outcome-desc"><strong>Early user satisfaction</strong> — every interview participant said they would use VisiPomo over their current pomodoro setup, citing the personal vision board integration as the deciding factor.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num" style="color:var(--teal)">6/6</div>
+        <p class="outcome-desc"><strong>Usability issues resolved</strong> across two testing rounds. All Round 1 and Round 2 findings were addressed before the final prototype. Zero unresolved critical issues.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num" style="color:var(--sage)">Live</div>
+        <p class="outcome-desc"><strong>Deployed on Vercel</strong> at visipomo.vercel.app — a working product accessible to real users, not just a prototype. This is the most concrete possible evidence that a design can be executed end-to-end.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num" style="color:var(--amber)">0</div>
+        <p class="outcome-desc"><strong>Competitors with equivalent feature set.</strong> The competitive audit confirmed no existing product combines personalized vision boarding, YouTube integration, multi-mode audio, and goal-tracking in one experience.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num" style="color:var(--plum)">3</div>
+        <p class="outcome-desc"><strong>Distinct user modes</strong> designed for different work contexts (Deep Focus, Planning, Vision Board) — each validated in usability testing as serving meaningfully different user mental states and task types.</p>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-num" style="color:var(--rose)">2wk</div>
+        <p class="outcome-desc"><strong>Research through live deployment in 2 weeks</strong> — demonstrating that AI-assisted design engineering can dramatically compress the design-to-ship cycle without sacrificing research quality or design craft.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="section section-alt" id="reflection">
+  <div class="container">
+    <p class="section-label">09 — Reflection</p>
+    <h2 class="section-title">What I learned about motivation, design, and shipping.</h2>
+    <p class="section-intro">VisiPomo was the first project where I took a design from research all the way through to a live deployed product. That changes how you think about every design decision — you know it's going to be real.</p>
+
+    <div class="reflection-grid">
+      <div class="reflection-card rc-well">
+        <p class="rc-label">What Went Well</p>
+        <h3>Research changed the product fundamentally</h3>
+        <ul>
+          <li>My assumption that curated imagery would work was wrong — research revealed personalization was the core value prop. Catching that before building saved enormous rework time.</li>
+          <li>The three-mode architecture (an insight that came from usability testing, not the original spec) became the most-praised aspect of the product in later user feedback.</li>
+          <li>Shipping a live product created a feedback loop beyond the formal study — real users using it for real work sessions provided signals no prototype session could replicate.</li>
+        </ul>
+      </div>
+      <div class="reflection-card rc-diff">
+        <p class="rc-label">What I'd Do Differently</p>
+        <h3>Recruit more diverse users earlier</h3>
+        <p>My research participants skewed toward college students (matching the Jade persona closely). I'd want to test with working professionals, users with ADHD, and older users with different relationships to vision boarding and motivation to stress-test the design beyond its primary audience.</p>
+        <p style="margin-top:0.8rem">I'd also invest more time in the onboarding flow earlier in the process — the cold start problem that emerged in Round 2 testing should have been anticipated in the initial wireframe phase.</p>
+      </div>
+      <div class="reflection-card rc-next">
+        <p class="rc-label">What I'd Test Next</p>
+        <h3>Three open research questions</h3>
+        <ul>
+          <li>Does having a personal vision board as the background actually improve session quality and goal-achievement over time? This needs a longitudinal study — 4+ weeks of daily use data.</li>
+          <li>What is the optimal session length for the Subliminal Boost audio mode? Standard Pomodoro (25 min) may not be right for this more meditative context.</li>
+          <li>How do users with ADHD experience the immersive environment — does the visual richness help or distract?</li>
+        </ul>
+      </div>
+      <div class="reflection-card rc-v2">
+        <p class="rc-label">V2 Priorities</p>
+        <h3>If the product continues</h3>
+        <ul>
+          <li>Native Pinterest board sync and Canva import — reduce setup friction to zero</li>
+          <li>AI-generated vision imagery for users who don't yet have a board — immediate emotional investment from first session</li>
+          <li>Mobile companion app — make the motivational environment accessible all day, not just at a desk</li>
+          <li>Session history analytics — make accomplishment data visible and emotionally resonant, not just numerical</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="hmw">
+      <p class="hmw-label">Final Takeaway</p>
+      <p class="hmw-text">VisiPomo taught me that <em>motivation is deeply personal</em> — and that the best design insight I had came not from my initial assumptions, but from listening carefully to what users actually needed. The gap between a productive session and an unmotivated one is often just <em>a reminder of why the work matters.</em></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-name">Madison Stewart</div>
+  <p class="footer-role">UX Researcher · Designer · Design Engineer · Atlanta, GA</p>
+  <ul class="footer-links">
+    <li><a href="index.html">← Portfolio Home</a></li>
+    <li class="footer-divider"></li>
+    <li><a href="family.html">FamILY Case Study →</a></li>
+    <li class="footer-divider"></li>
+    <li><a href="https://visipomo.vercel.app/" target="_blank">Live App ↗</a></li>
+    <li class="footer-divider"></li>
+    <li><a href="https://www.linkedin.com/in/madison-stewart-walker/" target="_blank">LinkedIn</a></li>
+    <li class="footer-divider"></li>
+    <li><a href="mailto:stmadison17@gmail.com">stmadison17@gmail.com</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Madison Stewart · VisiPomo Case Study</p>
+</footer>
+
+</body>
+</html>
