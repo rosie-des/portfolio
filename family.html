@@ -277,14 +277,57 @@
   .stat-label { font-size: 0.8rem; color: var(--ink-muted); line-height: 1.4; }
 
   .insights-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    display: grid; grid-template-columns: 1fr; gap: 1.5rem;
     margin-bottom: 4rem;
   }
   .insight-card {
+    background: var(--cream);
+    border: 1.5px solid var(--border);
+    border-radius: 0.875rem; padding: 0;
+    position: relative;
+    display: grid; grid-template-columns: auto 1fr;
+    overflow: hidden;
+    align-items: stretch;
+  }
+  .insight-phone {
+    background: var(--cream);
+    padding: 2rem 1.8rem;
+    display: flex; align-items: flex-start; justify-content: center;
+  }
+  .insight-phone img {
+    width: 220px;
+    border-radius: 1.5rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+    display: block;
+  }
+  .insight-right {
+    display: flex; flex-direction: column;
+    padding: 2rem 2rem 2rem 0;
+    gap: 1.2rem;
+    justify-content: center;
+  }
+  .insight-text-box {
+    padding: 1.6rem 1.8rem;
     background: var(--warm-white);
     border: 1.5px solid var(--border);
-    border-radius: 0.875rem; padding: 2rem;
-    position: relative;
+    border-radius: 0.875rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  }
+  .insight-quote-box {
+    padding: 1.4rem 1.8rem;
+    background: var(--rose-pale);
+    border: 1.5px solid #E8B0A0;
+    border-left: 3px solid var(--rose);
+    border-radius: 0.875rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    font-size: 0.85rem; font-style: italic;
+    color: var(--ink-light); line-height: 1.65;
+  }
+  .insight-quote-box cite {
+    display: block; margin-top: 0.7rem;
+    font-style: normal; font-size: 0.72rem;
+    color: var(--ink-muted); font-weight: 600;
+    letter-spacing: 0.03em;
   }
   .insight-num {
     font-family: 'DM Mono', monospace;
@@ -326,9 +369,15 @@
     border-bottom: 1.5px solid var(--border);
   }
   .persona-avatar {
-    width: 52px; height: 52px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; margin-bottom: 1rem;
+    width: calc(100% + 3.6rem);
+    margin: -1.8rem -1.8rem 1.2rem;
+    height: 220px;
+    overflow: hidden;
+  }
+  .persona-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center top;
+    display: block;
   }
   .persona-name {
     font-family: 'Playfair Display', serif;
@@ -400,6 +449,7 @@
   .wf-callout {
     background: var(--charcoal); border-radius: 1rem;
     padding: 2.5rem; color: #fff;
+    align-self: center;
   }
   .wf-callout-label {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
@@ -579,13 +629,29 @@
   .delay-3 { animation-delay: 0.34s; }
   .delay-4 { animation-delay: 0.46s; }
 
+  .scroll-arrow {
+    position: absolute; bottom: 2.5rem; left: 5rem;
+    width: 2.5rem; height: 2.5rem;
+    background: white; border-radius: 0.4rem;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; z-index: 10;
+    animation: bounce 2s infinite;
+  }
+  .scroll-arrow:hover { opacity: 0.85; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; }
     .hero-right { display: none; }
     .hero-left { padding: 10rem 2rem 5rem; }
     .container { padding: 0 1.5rem; }
     .research-stats { grid-template-columns: 1fr 1fr; }
-    .insights-grid { grid-template-columns: 1fr; }
+    .insight-card { grid-template-columns: 1fr; }
+    .insight-content { margin: 0 1rem 1rem; }
+    .insight-phone img { width: 160px; }
     .personas-grid { grid-template-columns: 1fr; }
     .finding-cols { grid-template-columns: 1fr; }
     .outcomes-grid { grid-template-columns: 1fr 1fr; }
@@ -646,40 +712,20 @@
       </div>
     </div>
   </div>
-  <div class="hero-right fade-up delay-4">
-    <div class="hero-visual">
-      <p class="hero-visual-label">Usability Study Results</p>
-      <div class="score-row">
-        <span class="score-label">Task completion rate</span>
-        <div class="score-bar-track"><div class="score-bar-fill" style="width:88%;background:var(--teal-light)"></div></div>
-        <span class="score-num">88%</span>
-      </div>
-      <div class="score-row">
-        <span class="score-label">Ease of navigation</span>
-        <div class="score-bar-track"><div class="score-bar-fill" style="width:80%;background:var(--rose-light)"></div></div>
-        <span class="score-num">4.0/5</span>
-      </div>
-      <div class="score-row">
-        <span class="score-label">Kids mode learnability</span>
-        <div class="score-bar-track"><div class="score-bar-fill" style="width:90%;background:var(--teal-light)"></div></div>
-        <span class="score-num">4.5/5</span>
-      </div>
-      <div class="score-row">
-        <span class="score-label">Overall satisfaction (SUS)</span>
-        <div class="score-bar-track"><div class="score-bar-fill" style="width:78%;background:var(--rose-light)"></div></div>
-        <span class="score-num">78/100</span>
-      </div>
-      <div class="score-row">
-        <span class="score-label">Participants tested</span>
-        <div class="score-bar-track"><div class="score-bar-fill" style="width:100%;background:var(--amber)"></div></div>
-        <span class="score-num">6</span>
-      </div>
-      <a href="https://www.figma.com/proto/moQhoOo0pY5R8x9phP2VdF/UX-Design-Beginner?node-id=284-1341&t=RjL8huOUPKL981jV-1&starting-point-node-id=284%3A1341" target="_blank" class="proto-link">
+  <div class="hero-right fade-up delay-4" style="padding:6rem 3rem 5rem;">
+    <div class="hero-visual" style="max-width:100%;padding:1.5rem;">
+      <img src="images/Portfolio Designs.png" alt="FamILY portfolio designs" style="width:100%;border-radius:0.75rem;display:block;margin-bottom:1.5rem;">
+      <a href="https://www.figma.com/proto/moQhoOo0pY5R8x9phP2VdF/UX-Design-Beginner?node-id=284-1341&t=RjL8huOUPKL981jV-1&starting-point-node-id=284%3A1341" target="_blank" class="proto-link" style="width:100%;justify-content:center;font-size:0.95rem;padding:1rem 1.4rem;">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         View Figma Prototype (5 flows, 42 screens)
       </a>
     </div>
   </div>
+  <a href="#problem" class="scroll-arrow" aria-label="Scroll down">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </svg>
+  </a>
 </section>
 
 <!-- PROBLEM -->
@@ -747,39 +793,67 @@
 
     <div class="insights-grid">
       <div class="insight-card">
-        <p class="insight-num">Insight 01</p>
-        <h3 class="insight-title">Too Busy to Plan</h3>
-        <p class="insight-body">Parents expressed that the overhead of manually inputting events into yet another app was a dealbreaker. The design needed to pull from existing tools automatically — not add to the data-entry burden.</p>
-        <div class="insight-quote">
-          "I already have three apps trying to do this. If I have to type everything in again, I'm just not going to use it."
-          <cite>— Survey respondent, parent of 2, age 34</cite>
+        <div class="insight-phone">
+          <img src="images/Settings Sync.png" alt="Settings sync screen">
+        </div>
+        <div class="insight-right">
+          <div class="insight-text-box">
+            <p class="insight-num">Insight 01</p>
+            <h3 class="insight-title">Too Busy to Plan</h3>
+            <p class="insight-body">Parents expressed that the overhead of manually inputting events into yet another app was a dealbreaker. The design needed to pull from existing tools automatically — not add to the data-entry burden.</p>
+          </div>
+          <div class="insight-quote-box">
+            "I already have three apps trying to do this. If I have to type everything in again, I'm just not going to use it."
+            <cite>— Survey respondent, parent of 2, age 34</cite>
+          </div>
         </div>
       </div>
       <div class="insight-card">
-        <p class="insight-num">Insight 02</p>
-        <h3 class="insight-title">Hard to Learn New Tools</h3>
-        <p class="insight-body">Participants — especially those managing neurodivergent children or living with their own disabilities — flagged that onboarding new technology was a significant barrier. Familiarity mattered more than novelty.</p>
-        <div class="insight-quote">
-          "My brain doesn't have bandwidth for learning new software right now. It needs to just work like the calendar I already use."
-          <cite>— Interview participant, single parent, age 41</cite>
+        <div class="insight-phone">
+          <img src="images/Parent's Mode (2).png" alt="Parent's mode screen">
+        </div>
+        <div class="insight-right">
+          <div class="insight-text-box">
+            <p class="insight-num">Insight 02</p>
+            <h3 class="insight-title">Hard to Learn New Tools</h3>
+            <p class="insight-body">Participants — especially those managing neurodivergent children or living with their own disabilities — flagged that onboarding new technology was a significant barrier. Familiarity mattered more than novelty.</p>
+          </div>
+          <div class="insight-quote-box">
+            "My brain doesn't have bandwidth for learning new software right now. It needs to just work like the calendar I already use."
+            <cite>— Interview participant, single parent, age 41</cite>
+          </div>
         </div>
       </div>
       <div class="insight-card">
-        <p class="insight-num">Insight 03</p>
-        <h3 class="insight-title">No Child-Friendly Options Exist</h3>
-        <p class="insight-body">Parents of younger children (ages 5–10) wanted their children to be able to check their own schedule independently, but no existing calendar tool had a mode safe and readable for that age group.</p>
-        <div class="insight-quote">
-          "My 7-year-old asks me constantly what's happening today. I'd love for her to just look it up herself."
-          <cite>— Interview participant, parent of 3, age 38</cite>
+        <div class="insight-phone">
+          <img src="images/Kids Mode (2).png" alt="Kids mode screen">
+        </div>
+        <div class="insight-right">
+          <div class="insight-text-box">
+            <p class="insight-num">Insight 03</p>
+            <h3 class="insight-title">No Child-Friendly Options Exist</h3>
+            <p class="insight-body">Parents of younger children (ages 5–10) wanted their children to be able to check their own schedule independently, but no existing calendar tool had a mode safe and readable for that age group.</p>
+          </div>
+          <div class="insight-quote-box">
+            "My 7-year-old asks me constantly what's happening today. I'd love for her to just look it up herself."
+            <cite>— Interview participant, parent of 3, age 38</cite>
+          </div>
         </div>
       </div>
       <div class="insight-card">
-        <p class="insight-num">Insight 04</p>
-        <h3 class="insight-title">Navigation Overwhelm</h3>
-        <p class="insight-body">Users with accessibility needs — including low vision and motor differences — stressed the importance of simple, visual information architecture. Too many steps, buttons, or words created friction that made apps unusable.</p>
-        <div class="insight-quote">
-          "Most apps assume I can just scroll through a wall of text. I need things to be visual and obvious."
-          <cite>— Interview participant, user with low vision, age 29</cite>
+        <div class="insight-phone">
+          <img src="images/Accessibility Sync.png" alt="Accessibility sync screen">
+        </div>
+        <div class="insight-right">
+          <div class="insight-text-box">
+            <p class="insight-num">Insight 04</p>
+            <h3 class="insight-title">Navigation Overwhelm</h3>
+            <p class="insight-body">Users with accessibility needs — including low vision and motor differences — stressed the importance of simple, visual information architecture. Too many steps, buttons, or words created friction that made apps unusable.</p>
+          </div>
+          <div class="insight-quote-box">
+            "Most apps assume I can just scroll through a wall of text. I need things to be visual and obvious."
+            <cite>— Interview participant, user with low vision, age 29</cite>
+          </div>
         </div>
       </div>
     </div>
@@ -805,7 +879,9 @@
     <div class="personas-grid">
       <div class="persona-card">
         <div class="persona-header">
-          <div class="persona-avatar" style="background:var(--rose-pale)">👩</div>
+          <div class="persona-avatar">
+            <img src="images/Jordan Persona.png" alt="Jordan, 36, a dual-income working parent and primary user of FamILY">
+          </div>
           <div class="persona-name">Jordan, 36</div>
           <div class="persona-role">Working parent · Primary user</div>
           <p class="persona-quote">"I just need everything in one place so I'm not dropping the ball."</p>
@@ -827,7 +903,9 @@
       </div>
       <div class="persona-card">
         <div class="persona-header">
-          <div class="persona-avatar" style="background:var(--teal-pale)">🧒</div>
+          <div class="persona-avatar">
+            <img src="images/Mia Persona.png" alt="Mia, 8, a child user and secondary user of FamILY">
+          </div>
           <div class="persona-name">Mia, 8</div>
           <div class="persona-role">Child user · Secondary user</div>
           <p class="persona-quote">"I want to know if we're doing something fun today."</p>
@@ -849,7 +927,9 @@
       </div>
       <div class="persona-card">
         <div class="persona-header">
-          <div class="persona-avatar" style="background:var(--amber-pale)">🧑‍🦽</div>
+          <div class="persona-avatar">
+            <img src="images/Marcus Persona.png" alt="Marcus, 44, an accessibility user and constraint-setter for FamILY's design">
+          </div>
           <div class="persona-name">Marcus, 44</div>
           <div class="persona-role">Accessibility user · Constraint-setter</div>
           <p class="persona-quote">"Most apps just aren't built with people like me in mind."</p>
@@ -888,30 +968,46 @@
             <div style="width:36px;height:36px;border-radius:50%;background:var(--rose-pale);border:2px solid var(--rose);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--rose);flex-shrink:0">01</div>
             <div>
               <strong style="font-size:0.9rem;color:var(--ink)">Low-Fidelity Sketches</strong>
-              <p style="font-size:0.82rem;color:var(--ink-muted);margin-top:0.2rem;line-height:1.5">Quick hand-drawn concept sketches to explore layout ideas and navigation patterns. Used to gather early directional feedback before committing to any visual style.</p>
+              <img src="images/Low-Fidelity Sketches.png" alt="Low-fidelity hand-drawn sketches exploring layout and navigation patterns" style="display:block;width:100%;margin-top:0.8rem;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
             </div>
           </div>
           <div style="display:flex;gap:1.2rem;align-items:flex-start">
             <div style="width:36px;height:36px;border-radius:50%;background:var(--amber-pale);border:2px solid var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--amber);flex-shrink:0">02</div>
             <div>
               <strong style="font-size:0.9rem;color:var(--ink)">Mid-Fidelity Wireframes</strong>
-              <p style="font-size:0.82rem;color:var(--ink-muted);margin-top:0.2rem;line-height:1.5">Grayscale digital wireframes built in Figma. This is where the core IA was validated — and where significant structural changes happened after user feedback sessions.</p>
+              <img src="images/Mid-Fidelity Wireframes 2.png" alt="Mid-fidelity grayscale wireframes built in Figma showing core information architecture" style="display:block;width:100%;margin-top:0.8rem;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
             </div>
           </div>
           <div style="display:flex;gap:1.2rem;align-items:flex-start">
             <div style="width:36px;height:36px;border-radius:50%;background:var(--teal-pale);border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--teal);flex-shrink:0">03</div>
             <div>
               <strong style="font-size:0.9rem;color:var(--ink)">High-Fidelity Mockups</strong>
-              <p style="font-size:0.82rem;color:var(--ink-muted);margin-top:0.2rem;line-height:1.5">Full-color, interactive prototype. Color palette, typography, and component styles were tested and revised multiple times for both aesthetic appeal and WCAG AA contrast compliance.</p>
+              <img src="images/High-Fidelity Mockups.png" alt="High-fidelity full-color mockups showing final UI with WCAG AA compliant contrast and typography" style="display:block;width:100%;margin-top:0.8rem;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
             </div>
           </div>
         </div>
       </div>
       <div class="wf-callout">
         <p class="wf-callout-label">The Pivot Moment</p>
-        <p>Before usability feedback, my instinct was to design a standard calendar grid with a few accessible elements layered on top. <strong>That assumption didn't hold.</strong></p>
-        <p style="margin-top:1rem">Users with accessibility needs didn't just want a "more accessible" version of the same thing — they needed a fundamentally different navigation model. And children needed their own mode entirely, not just a simplified view of the adult interface.</p>
-        <p style="margin-top:1rem">This insight drove the creation of <strong>three distinct modes</strong> (Parent, Kids, Accessibility) sharing a common data layer — one of the biggest structural changes from lo-fi to mid-fi.</p>
+        <p style="margin-bottom:1.2rem">My initial instinct didn't survive contact with real user needs:</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;padding:0">
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+            <span><strong style="color:rgba(255,255,255,0.9)">Started with:</strong> a standard calendar grid with accessible elements layered on top</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+            <span>Accessibility users needed a <strong style="color:rgba(255,255,255,0.9)">fundamentally different navigation model</strong> — not just "more accessible"</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+            <span>Children needed their <strong style="color:rgba(255,255,255,0.9)">own mode entirely</strong> — not a simplified view of the adult interface</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+            <span><strong style="color:rgba(255,255,255,0.9)">Result:</strong> three distinct modes (Parent, Kids, Accessibility) sharing one data layer — the biggest structural change from lo-fi to mid-fi</span>
+          </li>
+        </ul>
       </div>
     </div>
 
