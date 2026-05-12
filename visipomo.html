@@ -416,6 +416,19 @@
     .finding-cols { grid-template-columns: 1fr; }
     .wire-grid { grid-template-columns: 1fr; }
   }
+  .scroll-arrow {
+    position: absolute; bottom: 2.5rem; left: 5rem;
+    width: 2.5rem; height: 2.5rem;
+    background: white; border-radius: 0.4rem;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; z-index: 10;
+    animation: bounce 2s infinite;
+  }
+  .scroll-arrow:hover { opacity: 0.85; }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
 </style>
 </head>
 <body>
@@ -487,6 +500,12 @@
       </a>
     </div>
   </div>
+  <a href="#problem" class="scroll-arrow" aria-label="Scroll down">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5"
+  stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"/>
+      </svg>
+    </a>
 </section>
 
 <!-- PROBLEM -->
