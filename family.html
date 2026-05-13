@@ -405,8 +405,9 @@
   /* ── USER FLOW ── */
   .flow-container {
     background: var(--warm-white); border: 1.5px solid var(--border);
-    border-radius: 1rem; padding: 3rem;
+    border-radius: 1rem; padding: 2rem;
     overflow-x: auto;
+    width: fit-content; margin: 0 auto;
   }
   .flow-title {
     font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
@@ -414,8 +415,7 @@
     margin-bottom: 2rem;
   }
   .flow-track {
-    display: flex; align-items: center; gap: 0; flex-wrap: nowrap;
-    min-width: max-content;
+    display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: nowrap;
   }
   .flow-step {
     display: flex; flex-direction: column; align-items: center;
@@ -443,13 +443,15 @@
   /* ── WIREFRAMES ── */
   .wireframe-section { }
   .wf-intro-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;
+    display: flex; flex-direction: column; gap: 1rem;
     margin-bottom: 3.5rem;
   }
   .wf-callout {
     background: var(--charcoal); border-radius: 1rem;
-    padding: 2.5rem; color: #fff;
-    align-self: center;
+    padding: 2rem 2.5rem; color: #fff;
+    display: grid; grid-template-columns: auto 1fr;
+    gap: 3rem; align-items: center;
+    margin-bottom: 2rem;
   }
   .wf-callout-label {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
@@ -487,6 +489,8 @@
   }
   .finding-body { padding: 1.8rem 2rem; }
   .finding-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .finding-cols > div { display: flex; flex-direction: column; }
+  .finding-col-body { flex: 1; }
   .finding-col-label {
     font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
     text-transform: uppercase;
@@ -503,6 +507,11 @@
     display: flex; align-items: center; gap: 0.6rem;
   }
   .finding-screen::before { content: '↳'; color: var(--rose); font-style: normal; }
+  .finding-img {
+    display: block; width: 220px; height: auto;
+    margin-top: 0.8rem; border-radius: 1.5rem;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.15);
+  }
 
   /* ── OUTCOMES ── */
   .outcomes-grid {
@@ -518,7 +527,9 @@
     font-size: 3rem; font-weight: 700;
     line-height: 1; margin-bottom: 0.5rem;
   }
-  .outcome-desc { font-size: 0.88rem; color: var(--ink-light); line-height: 1.55; }
+  .outcome-desc { font-size: 0.88rem; color: var(--ink-light); line-height: 1.55; list-style: none; display: flex; flex-direction: column; gap: 0.4rem; padding: 0; }
+  .outcome-desc li { display: flex; align-items: flex-start; gap: 0.5rem; }
+  .outcome-desc li::before { content: '—'; color: var(--rose); flex-shrink: 0; font-weight: 600; }
 
   .sus-block {
     background: var(--charcoal); border-radius: 1rem;
@@ -973,59 +984,60 @@
     <h2 class="section-title">From rough sketches to refined screens — what changed and why.</h2>
     <p class="section-intro">I moved through three fidelity stages. The designs changed substantially between lo-fi and mid-fi after early feedback revealed a fundamental mismatch between my initial vision and what users actually needed.</p>
 
-    <div class="wf-intro-grid">
+    <div class="wf-callout">
       <div>
-        <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.5rem">Design Fidelity Stages</p>
-        <div style="display:flex;flex-direction:column;gap:1rem">
-          <div style="display:flex;gap:1.2rem;align-items:flex-start">
-            <div style="width:36px;height:36px;border-radius:50%;background:var(--rose-pale);border:2px solid var(--rose);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--rose);flex-shrink:0">01</div>
-            <div>
-              <strong style="font-size:0.9rem;color:var(--ink)">Low-Fidelity Sketches</strong>
-              <img src="images/Low-Fidelity Sketches.png" alt="Low-fidelity hand-drawn sketches exploring layout and navigation patterns" style="display:block;width:100%;margin-top:0.8rem;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
-            </div>
-          </div>
-          <div style="display:flex;gap:1.2rem;align-items:flex-start">
-            <div style="width:36px;height:36px;border-radius:50%;background:var(--amber-pale);border:2px solid var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--amber);flex-shrink:0">02</div>
-            <div>
-              <strong style="font-size:0.9rem;color:var(--ink)">Mid-Fidelity Wireframes</strong>
-              <img src="images/Mid-Fidelity Wireframes 2.png" alt="Mid-fidelity grayscale wireframes built in Figma showing core information architecture" style="display:block;width:100%;margin-top:0.8rem;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
-            </div>
-          </div>
-          <div style="display:flex;gap:1.2rem;align-items:flex-start">
-            <div style="width:36px;height:36px;border-radius:50%;background:var(--teal-pale);border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--teal);flex-shrink:0">03</div>
-            <div>
-              <strong style="font-size:0.9rem;color:var(--ink)">High-Fidelity Mockups</strong>
-              <img src="images/High-Fidelity Mockups.png" alt="High-fidelity full-color mockups showing final UI with WCAG AA compliant contrast and typography" style="display:block;width:100%;margin-top:0.8rem;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="wf-callout">
         <p class="wf-callout-label">The Pivot Moment</p>
-        <p style="margin-bottom:1.2rem">My initial instinct didn't survive contact with real user needs:</p>
-        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.75rem;padding:0">
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
-            <span><strong style="color:rgba(255,255,255,0.9)">Started with:</strong> a standard calendar grid with accessible elements layered on top</span>
-          </li>
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
-            <span>Accessibility users needed a <strong style="color:rgba(255,255,255,0.9)">fundamentally different navigation model</strong> — not just "more accessible"</span>
-          </li>
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
-            <span>Children needed their <strong style="color:rgba(255,255,255,0.9)">own mode entirely</strong> — not a simplified view of the adult interface</span>
-          </li>
-          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">
-            <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
-            <span><strong style="color:rgba(255,255,255,0.9)">Result:</strong> three distinct modes (Parent, Kids, Accessibility) sharing one data layer — the biggest structural change from lo-fi to mid-fi</span>
-          </li>
-        </ul>
+        <p style="font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.55">My initial instinct didn't survive contact with real user needs:</p>
+      </div>
+      <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0.65rem 2rem;padding:0">
+        <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.88rem;color:rgba(255,255,255,0.65);line-height:1.55">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+          <span><strong style="color:rgba(255,255,255,0.9)">Started with:</strong> a standard calendar grid with accessible elements layered on top</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.88rem;color:rgba(255,255,255,0.65);line-height:1.55">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+          <span>Accessibility users needed a <strong style="color:rgba(255,255,255,0.9)">fundamentally different navigation model</strong> — not just "more accessible"</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.88rem;color:rgba(255,255,255,0.65);line-height:1.55">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+          <span>Children needed their <strong style="color:rgba(255,255,255,0.9)">own mode entirely</strong> — not a simplified view of the adult interface</span>
+        </li>
+        <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.88rem;color:rgba(255,255,255,0.65);line-height:1.55">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--rose-light);flex-shrink:0;margin-top:0.5rem"></span>
+          <span><strong style="color:rgba(255,255,255,0.9)">Result:</strong> three distinct modes (Parent, Kids, Accessibility) sharing one data layer</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="wf-intro-grid">
+      <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.5rem">Design Fidelity Stages</p>
+      <div style="display:flex;flex-direction:column;gap:2rem">
+        <div>
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.8rem">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--rose-pale);border:2px solid var(--rose);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--rose);flex-shrink:0">01</div>
+            <strong style="font-size:0.9rem;color:var(--ink)">Low-Fidelity Sketches</strong>
+          </div>
+          <img src="images/Low-Fidelity Sketches.png" alt="Low-fidelity hand-drawn sketches exploring layout and navigation patterns" style="display:block;width:100%;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.8rem">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--amber-pale);border:2px solid var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--amber);flex-shrink:0">02</div>
+            <strong style="font-size:0.9rem;color:var(--ink)">Mid-Fidelity Wireframes</strong>
+          </div>
+          <img src="images/Mid-Fidelity Wireframes 2.png" alt="Mid-fidelity grayscale wireframes built in Figma showing core information architecture" style="display:block;width:100%;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.8rem">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--teal-pale);border:2px solid var(--teal);display:flex;align-items:center;justify-content:center;font-size:0.72rem;font-weight:700;color:var(--teal);flex-shrink:0">03</div>
+            <strong style="font-size:0.9rem;color:var(--ink)">High-Fidelity Mockups</strong>
+          </div>
+          <img src="images/High-Fidelity Mockups.png" alt="High-fidelity full-color mockups showing final UI with WCAG AA compliant contrast and typography" style="display:block;width:100%;border-radius:0.5rem;box-shadow:0 4px 16px rgba(0,0,0,0.1)">
+        </div>
       </div>
     </div>
 
     <!-- User Flow -->
-    <div style="margin-top:3rem">
+    <div style="margin-top:2rem">
       <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.5rem">Core User Flow — Adding a Family Event (Parent Mode)</p>
       <div class="flow-container">
         <div class="flow-track">
@@ -1035,33 +1047,23 @@
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step">
+            <div class="flow-bubble action">Select View</div>
+            <p class="flow-step-label">Day, week, or month</p>
+          </div>
+          <span class="flow-arrow">→</span>
+          <div class="flow-step">
             <div class="flow-bubble action">Tap + Add</div>
             <p class="flow-step-label">FAB on calendar screen</p>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step">
-            <div class="flow-bubble action">Select Type</div>
-            <p class="flow-step-label">Event, reminder, or import</p>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">
-            <div class="flow-bubble decision"><span>Import from existing app?</span></div>
-            <p class="flow-step-label">Auto-fill vs manual entry</p>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">
             <div class="flow-bubble action">Add Details</div>
-            <p class="flow-step-label">Title, time, who's included</p>
-          </div>
-          <span class="flow-arrow">→</span>
-          <div class="flow-step">
-            <div class="flow-bubble action">Assign to Family</div>
-            <p class="flow-step-label">Select which members see it</p>
+            <p class="flow-step-label">Title, time, and date</p>
           </div>
           <span class="flow-arrow">→</span>
           <div class="flow-step">
             <div class="flow-bubble end">Saved ✓</div>
-            <p class="flow-step-label">Event appears in all assigned views</p>
+            <p class="flow-step-label">Event added to calendar</p>
           </div>
         </div>
       </div>
@@ -1097,12 +1099,12 @@
             <div>
               <p class="finding-col-label before-label">Before (Mid-fi)</p>
               <p class="finding-col-body">Announcement cards on the home screen used rounded corners, drop shadows, and a light fill — the same visual affordances as interactive buttons. Almost every participant tapped on them expecting a response.</p>
-              <div class="finding-screen">Raised card with border-radius 12px, shadow, and colored fill — matched interactive button pattern exactly</div>
+              <img src="images/Before Mid-Fi .png" alt="Before: raised card styled like a button" class="finding-img">
             </div>
             <div>
               <p class="finding-col-label after-label">After (Hi-fi)</p>
               <p class="finding-col-body">Removed drop shadows and changed the shape to a flat, borderless layout with subtle background tinting. Added an explicit "Announcement" label in small caps. No more confusion with buttons.</p>
-              <div class="finding-screen">Flat layout, no shadow, left-border accent only, small-caps label distinguishes from actionable elements</div>
+              <img src="images/Kids Mode.png" alt="After: flat layout with no shadow, left-border accent" class="finding-img">
             </div>
           </div>
         </div>
@@ -1119,12 +1121,12 @@
             <div>
               <p class="finding-col-label before-label">Before (Mid-fi)</p>
               <p class="finding-col-body">Tapping an event on the calendar navigated to a full separate screen. Users lost their place in the calendar and had to use the back button to return — adding friction and confusion, especially for accessibility users.</p>
-              <div class="finding-screen">Full page navigation → calendar context lost → back-button required to return</div>
+              <img src="images/Mid-Fidelity Wireframes Before.png" alt="Before: full page navigation losing calendar context" class="finding-img">
             </div>
             <div>
               <p class="finding-col-label after-label">After (Hi-fi)</p>
               <p class="finding-col-body">Replaced full-page navigation with bottom-sheet overlays that slide up over the calendar. Users can review event details and dismiss without losing their calendar context.</p>
-              <div class="finding-screen">Bottom sheet overlay slides up → calendar remains visible in background → single swipe to dismiss</div>
+              <img src="images/Calendar Wireframe After.png" alt="After: bottom sheet overlay keeping calendar context visible" class="finding-img">
             </div>
           </div>
         </div>
@@ -1141,12 +1143,12 @@
             <div>
               <p class="finding-col-label before-label">Before</p>
               <p class="finding-col-body">Initial Kids Mode used 6+ high-saturation colors simultaneously. Parents of children with sensory sensitivities flagged this immediately. The child user in testing took significantly longer to find targets on busy screens.</p>
-              <div class="finding-screen">6 saturated colors, no dominant hierarchy, uniform brightness across elements</div>
+              <img src="images/Kids Mode draft hi fi (1).png" alt="Before: Kids Mode with 6 high-saturation colors and no visual hierarchy" class="finding-img">
             </div>
             <div>
               <p class="finding-col-label after-label">After</p>
               <p class="finding-col-body">Reduced to 3 primary colors with clear visual hierarchy. Used color to distinguish event types (not decoration). Increased whitespace and reduced visual density by 40%.</p>
-              <div class="finding-screen">3-color system, color = event category, whitespace increased, icon-first layout</div>
+              <img src="images/Kids Mode.png" alt="After: Kids Mode with simplified 3-color system and increased whitespace" class="finding-img">
             </div>
           </div>
         </div>
@@ -1163,12 +1165,12 @@
             <div>
               <p class="finding-col-label before-label">Before</p>
               <p class="finding-col-body">The floating action button (FAB) used a + icon only, with no text label. The accessibility user and one parent failed to identify it as the primary action during their first session.</p>
-              <div class="finding-screen">Icon-only FAB → no accessible label → screen reader read "button" with no context</div>
+              <img src="images/Before CTA Mid-Fi.png" alt="Before: icon-only FAB with no accessible label" class="finding-img">
             </div>
             <div>
               <p class="finding-col-label after-label">After</p>
               <p class="finding-col-body">Added a text label "Add Event" to the FAB in accessibility mode. Added aria-label for screen reader support. Increased tap target size from 44px to 56px to meet WCAG 2.5.5 AAA target size guidelines.</p>
-              <div class="finding-screen">Labeled FAB "Add Event" + aria-label + 56px tap target → 100% task success in round 2</div>
+              <img src="images/After CTA Hi-Fi.png" alt="After: labeled FAB with aria-label and 56px tap target" class="finding-img">
             </div>
           </div>
         </div>
@@ -1185,12 +1187,12 @@
             <div>
               <p class="finding-col-label before-label">Before</p>
               <p class="finding-col-body">The mode toggle was housed in Settings, two taps from the home screen. One parent didn't find it at all during the first testing round.</p>
-              <div class="finding-screen">Settings → Profile → Switch Mode → 3 taps from home screen</div>
+              <img src="images/Before Mode Switch.png" alt="Before: mode switch buried in Settings, 3 taps from home" class="finding-img">
             </div>
             <div>
               <p class="finding-col-label after-label">After</p>
               <p class="finding-col-body">Surfaced mode switching to a persistent icon in the top navigation bar. Users can switch between Parent and Kids views in a single tap from anywhere in the app.</p>
-              <div class="finding-screen">Top nav persistent icon → single tap to switch → animated transition indicates context change</div>
+              <img src="images/After Mode Switch.png" alt="After: persistent mode switch icon in top nav, single tap" class="finding-img">
             </div>
           </div>
         </div>
@@ -1210,27 +1212,45 @@
     <div class="outcomes-grid">
       <div class="outcome-card">
         <div class="outcome-num" style="color:var(--teal)">88%</div>
-        <p class="outcome-desc"><strong>Task completion rate</strong> across all 3 core tasks in round 2 testing — up from 67% in round 1. The mode switch and FAB changes had the biggest individual impact.</p>
+        <ul class="outcome-desc">
+          <li><strong>Task completion rate</strong> across all 3 core tasks in round 2 — up from 67% in round 1</li>
+          <li>Mode switch and FAB changes had the biggest individual impact</li>
+        </ul>
       </div>
       <div class="outcome-card">
         <div class="outcome-num" style="color:var(--rose)">4.0<span style="font-size:1.5rem">/5</span></div>
-        <p class="outcome-desc"><strong>Average ease-of-navigation score</strong> from post-test questionnaires. Participants described the interface as "clear" and "less overwhelming than I expected."</p>
+        <ul class="outcome-desc">
+          <li><strong>Average ease-of-navigation score</strong> from post-test questionnaires</li>
+          <li>Participants described the interface as "clear" and "less overwhelming than expected"</li>
+        </ul>
       </div>
       <div class="outcome-card">
         <div class="outcome-num" style="color:var(--amber)">5/5</div>
-        <p class="outcome-desc"><strong>Participants successfully completed Kids Mode onboarding</strong> in round 2, compared to 3/5 in round 1. The simplified color palette and larger touch targets drove the improvement.</p>
+        <ul class="outcome-desc">
+          <li><strong>Kids Mode onboarding completed</strong> by all participants in round 2 — up from 3/5 in round 1</li>
+          <li>Simplified color palette and larger touch targets drove the improvement</li>
+        </ul>
       </div>
       <div class="outcome-card">
         <div class="outcome-num" style="color:var(--sage)">100%</div>
-        <p class="outcome-desc"><strong>Task success for the labeled FAB</strong> in accessibility mode during round 2 — up from 0% in round 1 when the icon-only button was used. A single labeling change eliminated the problem entirely.</p>
+        <ul class="outcome-desc">
+          <li><strong>Task success for the labeled FAB</strong> in accessibility mode — up from 0% in round 1</li>
+          <li>A single labeling change eliminated the problem entirely</li>
+        </ul>
       </div>
       <div class="outcome-card">
         <div class="outcome-num" style="color:var(--teal)">7</div>
-        <p class="outcome-desc"><strong>Usability issues identified</strong> across both rounds of testing. 6 of 7 were resolved before the final prototype. 1 issue (date input precision in accessibility mode) was logged as a v2 priority.</p>
+        <ul class="outcome-desc">
+          <li><strong>Usability issues identified</strong> across both rounds of testing</li>
+          <li>6 of 7 resolved before final prototype; 1 (date input precision) logged as v2 priority</li>
+        </ul>
       </div>
       <div class="outcome-card">
         <div class="outcome-num" style="color:var(--rose)">AA</div>
-        <p class="outcome-desc"><strong>WCAG 2.1 AA contrast compliance</strong> achieved across all primary text and interactive elements. Minimum contrast ratio of 4.5:1 maintained for body text, 3:1 for large text and UI components.</p>
+        <ul class="outcome-desc">
+          <li><strong>WCAG 2.1 AA contrast compliance</strong> across all primary text and interactive elements</li>
+          <li>Minimum 4.5:1 ratio for body text, 3:1 for large text and UI components</li>
+        </ul>
       </div>
     </div>
 
@@ -1241,9 +1261,20 @@
         <div class="sus-descriptor">Good</div>
       </div>
       <div class="sus-body">
-        <p>Post-test System Usability Scale (SUS) questionnaires scored an average of <strong>78 out of 100</strong> across 6 participants — placing FamILY in the "Good" range on the standard SUS adjective scale. An 80+ score is considered "Excellent."</p>
-        <p>The primary driver keeping the score below 80 was the learning curve around the three-mode system. Participants understood each individual mode well, but the concept of switching between modes needed better onboarding. <strong>This is the single highest-priority item for a next round of iteration.</strong></p>
-        <p>The child user in testing gave the Kids Mode a post-session verbal rating of "really easy" and independently completed all assigned tasks — the most encouraging result of the project.</p>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:0.9rem;padding:0">
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.65">
+            <span style="color:var(--teal-light);flex-shrink:0;font-weight:700">—</span>
+            <span>Scored <strong style="color:rgba(255,255,255,0.9)">78/100</strong> across 6 participants — placing FamILY in the "Good" range; 80+ is considered "Excellent"</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.65">
+            <span style="color:var(--teal-light);flex-shrink:0;font-weight:700">—</span>
+            <span>Primary gap: learning curve around the three-mode system — switching between modes needs better onboarding (<strong style="color:rgba(255,255,255,0.9)">highest-priority v2 item</strong>)</span>
+          </li>
+          <li style="display:flex;align-items:flex-start;gap:0.75rem;font-size:0.92rem;color:rgba(255,255,255,0.65);line-height:1.65">
+            <span style="color:var(--teal-light);flex-shrink:0;font-weight:700">—</span>
+            <span>Most encouraging result: child user rated Kids Mode <strong style="color:rgba(255,255,255,0.9)">"really easy"</strong> and completed all tasks independently</span>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -1260,45 +1291,32 @@
       <div>
         <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.2rem">Key Design Decisions</p>
         <div style="display:flex;flex-direction:column;gap:1.2rem">
-          <div style="padding:1.4rem;background:var(--rose-pale);border-radius:0.75rem;border-left:3px solid var(--rose)">
-            <strong style="font-size:0.9rem;color:var(--ink)">Three-Mode Architecture</strong>
-            <p style="font-size:0.85rem;color:var(--ink-light);margin-top:0.4rem;line-height:1.6">Parent Mode, Kids Mode, and Accessibility Mode share a single data layer. Switching modes changes the UI presentation, not the underlying data — so families see the same information in whatever format works best for them.</p>
+          <div style="padding:1rem 1.2rem;background:var(--rose-pale);border-radius:0.75rem;border-left:3px solid var(--rose)">
+            <strong style="font-size:0.88rem;color:var(--ink)">Three-Mode Architecture</strong>
+            <ul style="list-style:none;padding:0;margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem">
+              <li style="display:flex;gap:0.5rem;font-size:0.82rem;color:var(--ink-light);line-height:1.5"><span style="color:var(--rose);flex-shrink:0">—</span>Parent, Kids, and Accessibility modes share one data layer</li>
+              <li style="display:flex;gap:0.5rem;font-size:0.82rem;color:var(--ink-light);line-height:1.5"><span style="color:var(--rose);flex-shrink:0">—</span>Switching modes changes the UI, not the underlying data</li>
+            </ul>
           </div>
-          <div style="padding:1.4rem;background:var(--teal-pale);border-radius:0.75rem;border-left:3px solid var(--teal)">
-            <strong style="font-size:0.9rem;color:var(--ink)">Import-First Event Creation</strong>
-            <p style="font-size:0.85rem;color:var(--ink-light);margin-top:0.4rem;line-height:1.6">The "Add Event" flow defaults to importing from connected calendars (Google, Apple, Outlook) rather than manual entry — directly addressing the #1 research insight about data-entry fatigue.</p>
+          <div style="padding:1rem 1.2rem;background:var(--teal-pale);border-radius:0.75rem;border-left:3px solid var(--teal)">
+            <strong style="font-size:0.88rem;color:var(--ink)">Import-First Event Creation</strong>
+            <ul style="list-style:none;padding:0;margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem">
+              <li style="display:flex;gap:0.5rem;font-size:0.82rem;color:var(--ink-light);line-height:1.5"><span style="color:var(--teal);flex-shrink:0">—</span>"Add Event" defaults to importing from Google, Apple, or Outlook</li>
+              <li style="display:flex;gap:0.5rem;font-size:0.82rem;color:var(--ink-light);line-height:1.5"><span style="color:var(--teal);flex-shrink:0">—</span>Directly addresses the #1 research insight: data-entry fatigue</li>
+            </ul>
           </div>
-          <div style="padding:1.4rem;background:var(--amber-pale);border-radius:0.75rem;border-left:3px solid var(--amber)">
-            <strong style="font-size:0.9rem;color:var(--ink)">Accessibility as a Default</strong>
-            <p style="font-size:0.85rem;color:var(--ink-light);margin-top:0.4rem;line-height:1.6">WCAG AA contrast, 56px minimum touch targets, screen reader labels, and reduced-motion options are built in globally — not bolted on as a separate mode. Every screen benefits from these constraints.</p>
+          <div style="padding:1rem 1.2rem;background:var(--amber-pale);border-radius:0.75rem;border-left:3px solid var(--amber)">
+            <strong style="font-size:0.88rem;color:var(--ink)">Accessibility as a Default</strong>
+            <ul style="list-style:none;padding:0;margin-top:0.5rem;display:flex;flex-direction:column;gap:0.3rem">
+              <li style="display:flex;gap:0.5rem;font-size:0.82rem;color:var(--ink-light);line-height:1.5"><span style="color:var(--amber);flex-shrink:0">—</span>WCAG AA contrast + 56px touch targets built in globally</li>
+              <li style="display:flex;gap:0.5rem;font-size:0.82rem;color:var(--ink-light);line-height:1.5"><span style="color:var(--amber);flex-shrink:0">—</span>Screen reader labels and reduced-motion options on every screen</li>
+            </ul>
           </div>
         </div>
       </div>
-      <div>
-        <p style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:1.2rem">Prototype Coverage</p>
-        <div style="display:flex;flex-direction:column;gap:0.8rem">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;background:var(--cream);border-radius:0.6rem;border:1.5px solid var(--border)">
-            <span style="font-size:0.88rem;color:var(--ink)">Onboarding & account setup</span>
-            <span class="tag tag-teal" style="margin:0">8 screens</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;background:var(--cream);border-radius:0.6rem;border:1.5px solid var(--border)">
-            <span style="font-size:0.88rem;color:var(--ink)">Parent calendar management</span>
-            <span class="tag tag-rose" style="margin:0">12 screens</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;background:var(--cream);border-radius:0.6rem;border:1.5px solid var(--border)">
-            <span style="font-size:0.88rem;color:var(--ink)">Add event + import flow</span>
-            <span class="tag tag-amber" style="margin:0">9 screens</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;background:var(--cream);border-radius:0.6rem;border:1.5px solid var(--border)">
-            <span style="font-size:0.88rem;color:var(--ink)">Kids Mode</span>
-            <span class="tag tag-teal" style="margin:0">8 screens</span>
-          </div>
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 1.4rem;background:var(--cream);border-radius:0.6rem;border:1.5px solid var(--border)">
-            <span style="font-size:0.88rem;color:var(--ink)">Accessibility mode settings</span>
-            <span class="tag tag-sage" style="margin:0">5 screens</span>
-          </div>
-        </div>
-        <a href="https://www.figma.com/proto/moQhoOo0pY5R8x9phP2VdF/UX-Design-Beginner?node-id=284-1341&t=RjL8huOUPKL981jV-1&starting-point-node-id=284%3A1341" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;margin-top:1.5rem;background:var(--charcoal);color:#fff;padding:0.85rem 1.6rem;border-radius:0.6rem;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s">
+      <div style="display:flex;flex-direction:column;align-items:flex-start;gap:1.2rem">
+        <img src="images/FamILY Mockup.png" alt="FamILY high-fidelity mockup screens" style="display:block;width:220px;height:auto;border-radius:1.5rem;box-shadow:0 8px 28px rgba(0,0,0,0.15)">
+        <a href="https://www.figma.com/proto/moQhoOo0pY5R8x9phP2VdF/UX-Design-Beginner?node-id=284-1341&t=RjL8huOUPKL981jV-1&starting-point-node-id=284%3A1341" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--charcoal);color:#fff;padding:0.85rem 1.6rem;border-radius:0.6rem;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Open Figma Prototype
         </a>
