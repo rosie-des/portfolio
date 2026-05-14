@@ -13,18 +13,18 @@
     --ink: #1A1512;
     --ink-light: #4A4340;
     --ink-muted: #8A817C;
-    --rose: #C4614A;
-    --rose-light: #E8917E;
-    --rose-pale: #F5E5E0;
-    --teal: #3B7A75;
-    --teal-light: #6AACA7;
-    --teal-pale: #E0EFEE;
+    --rose: #4F9FD8;
+    --rose-light: #80BDE8;
+    --rose-pale: #E2F2FB;
+    --teal: #6B52A8;
+    --teal-light: #9B7FCC;
+    --teal-pale: #EDE8F7;
     --amber: #C48B2F;
     --amber-pale: #F5EDD8;
     --sage: #6B8F71;
     --sage-pale: #E5EFE6;
-    --charcoal: #2C2420;
-    --border: #E0D8D0;
+    --charcoal: #1B203C;
+    --border: #D0DCEC;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -156,13 +156,13 @@
   .proto-link {
     display: inline-flex; align-items: center; gap: 0.6rem;
     margin-top: 1.8rem;
-    background: var(--rose); color: #fff;
+    background: var(--teal); color: #fff;
     padding: 0.75rem 1.4rem; border-radius: 0.5rem;
     font-size: 0.82rem; font-weight: 600; text-decoration: none;
     transition: background 0.2s, transform 0.2s;
     letter-spacing: 0.02em;
   }
-  .proto-link:hover { background: var(--rose-light); transform: translateY(-1px); }
+  .proto-link:hover { background: var(--teal-light); transform: translateY(-1px); }
   .proto-link svg { width: 14px; height: 14px; }
 
   /* ── LAYOUT ── */
@@ -1316,7 +1316,7 @@
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-start;gap:1.2rem">
         <img src="images/FamILY Mockup.png" alt="FamILY high-fidelity mockup screens" style="display:block;width:220px;height:auto;border-radius:1.5rem;box-shadow:0 8px 28px rgba(0,0,0,0.15)">
-        <a href="https://www.figma.com/proto/moQhoOo0pY5R8x9phP2VdF/UX-Design-Beginner?node-id=284-1341&t=RjL8huOUPKL981jV-1&starting-point-node-id=284%3A1341" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--charcoal);color:#fff;padding:0.85rem 1.6rem;border-radius:0.6rem;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s">
+        <a href="https://www.figma.com/proto/moQhoOo0pY5R8x9phP2VdF/UX-Design-Beginner?node-id=284-1341&t=RjL8huOUPKL981jV-1&starting-point-node-id=284%3A1341" target="_blank" style="display:inline-flex;align-items:center;gap:0.6rem;background:var(--teal);color:#fff;padding:0.85rem 1.6rem;border-radius:0.6rem;font-size:0.85rem;font-weight:600;text-decoration:none;transition:background 0.2s">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           Open Figma Prototype
         </a>
@@ -1337,34 +1337,36 @@
         <p class="rc-label">What Went Well</p>
         <h3>Accessibility-first approach paid off</h3>
         <ul>
-          <li>Treating accessibility as a constraint from day one — not an add-on — improved the design for every user group, not just accessibility users. The larger touch targets and higher-contrast palette made the app more usable for parents in a hurry too.</li>
-          <li>The three-mode architecture was a structural risk that validated well in testing. Users understood the concept quickly once it was properly surfaced in the navigation.</li>
-          <li>Research genuinely changed my direction. My initial instinct (a simple shared calendar) would have produced a worse product for every user group.</li>
+          <li>Accessibility-first improved usability for every user group — not just accessibility users</li>
+          <li>Three-mode architecture validated well once surfaced in the nav</li>
+          <li>Research changed my direction — my initial instinct would have built a worse product</li>
         </ul>
       </div>
       <div class="reflection-card rc-differently">
         <p class="rc-label">What I'd Do Differently</p>
         <h3>Better documentation from the start</h3>
-        <p>I under-documented my research process in real time — recruiting method, session protocols, note-taking — which made it harder to articulate the evidence behind decisions later. In my next project, I'll treat documentation as part of the design work, not something to catch up on afterward.</p>
-        <p style="margin-top:0.8rem">I'd also recruit more diverse participants earlier — specifically users with motor impairments — rather than relying on self-reported accessibility needs from the broader survey group.</p>
+        <ul>
+          <li>Document research in real time (protocols, recruiting, notes) — not as a catch-up task</li>
+          <li>Recruit users with motor impairments early, not just self-reported accessibility needs</li>
+        </ul>
       </div>
       <div class="reflection-card rc-next">
         <p class="rc-label">What I'd Test Next</p>
-        <h3>Three open questions worth exploring</h3>
+        <h3>Three open questions</h3>
         <ul>
-          <li>Does the calendar import feature actually reduce event-creation time? A longitudinal diary study over 2 weeks would answer this properly.</li>
-          <li>How do families with 3+ children use the mode-switching? I only tested with 1–2 child households.</li>
-          <li>Does Kids Mode work for a 5-year-old? My child participant was 8. Younger children with pre-literacy needs are a different design challenge entirely.</li>
+          <li>Does calendar import actually reduce event-creation time? (diary study, 2 weeks)</li>
+          <li>How do families with 3+ children use mode-switching? (only tested 1–2 child households)</li>
+          <li>Does Kids Mode work for a 5-year-old? (my participant was 8; pre-literacy is a different challenge)</li>
         </ul>
       </div>
       <div class="reflection-card rc-v2">
         <p class="rc-label">V2 Priorities</p>
         <h3>If the project continued</h3>
         <ul>
-          <li>Resolve the date-input precision issue flagged in accessibility mode testing (the one finding not addressed in this round)</li>
-          <li>Build out a dedicated onboarding flow for the three-mode concept — the SUS score tells me this is where learnability breaks down</li>
-          <li>Explore AI-powered schedule suggestions ("You have 3 events this weekend — want me to add travel time?") as a power-user feature for Jordan-type parents</li>
-          <li>Conduct a full WCAG audit with a screen reader specialist, not just automated contrast checking</li>
+          <li>Fix date-input precision in accessibility mode (only open issue from testing)</li>
+          <li>Build onboarding for the three-mode concept — that's where the SUS score lost points</li>
+          <li>Explore AI schedule suggestions as a power feature for busy parents</li>
+          <li>Full WCAG audit with a screen reader specialist, not just automated contrast checking</li>
         </ul>
       </div>
     </div>
